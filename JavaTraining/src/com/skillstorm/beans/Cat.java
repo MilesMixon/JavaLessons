@@ -22,4 +22,14 @@ public class Cat extends Animal {
 	public String view() {
 		return super.view() + ". But a cat, so evil.";
 	}
+
+	@Override
+	public void move(int distance) {
+		System.out.println("Walked " + distance/2);
+	}
+
+	@Override
+	public String speak() {
+		return "Meow";
+	}
 }

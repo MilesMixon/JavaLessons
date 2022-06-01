@@ -1,11 +1,12 @@
 package com.skillstorm.beans;
 
 // a Dog is an Animal
-public class Dog extends Animal {
+public final class Dog extends Animal {
 
 	private String breed;
 	
 	//functionality from animal is inherited
+	public Dog() { }
 	
 	public Dog(String name, String color, boolean tail, boolean fur, String breed) {
 		super(name, color, tail, fur);
@@ -25,5 +26,21 @@ public class Dog extends Animal {
 	@Override
 	public String view() {
 		return String.format("My name is %s. Let's play fetch", name);
+	}
+
+	@Override
+	public void move(int distance) {
+		System.out.println("Ran " + distance);
+	}
+
+	@Override
+	public String speak() {
+		return "Bark!!";
+	}
+	
+	//overloads can return any values, but need different parameters
+	public double speak(int value) {
+		// overloaded speak method
+		return 2.0;
 	}
 }
