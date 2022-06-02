@@ -9,13 +9,23 @@ package com.skillstorm.general;
 
 import java.io.InvalidObjectException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeMap;
 
 import com.skillstorm.beans.Animal;
 import com.skillstorm.beans.Cat;
 import com.skillstorm.beans.Day2;
+import com.skillstorm.beans.Day3;
 import com.skillstorm.beans.Dog;
+import com.skillstorm.beans.MyFileReader;
 import com.skillstorm.beans.Sedan;
 import com.skillstorm.beans.Truck;
 import com.skillstorm.beans.Vehicle;
@@ -32,7 +42,277 @@ public class General {
 	public static void main(String[] args) throws Exception {
 		//this is where every application starts
 		//Day1Examples();
-		Day2Examples();
+		//Day2Examples();
+		Day3Examples();
+	}
+	
+	public static void Day3Examples() {
+		// stack vs heap
+		/*
+		 * stack: value types and method calls
+		 * 			-reference variables
+		 * 
+		 * heap: objects and any reference types, instance variables
+		 * 			-anything that is referenced by it's memory location
+		 */
+		// Garbage collection: the process java uses to clean up references/ take back memory you are no longer using
+		
+		//data structures
+		/*
+		 * List: Interface
+		 * 		-It is generic (it can take in any object type)
+				-ArrayList
+				-LinkedList
+		 * 
+		 * 		List interface can only store objects
+		 * 
+		 * ArrayList: array-like implementation of list
+		 * 			-under the hood it uses an array
+		 * 			-random access just like an array
+		 * 			-starts at 10 memory, but automatically resizes for you
+		 * 				-resizes by 50% everytime it needs more memory
+		 * 			-stored as a continuous block of memory
+		 * 
+		 * If you want to store primitieves you have to use an object
+		 * So to store that you use a Wrapper object
+		 * 
+		 * Integer
+		 * Boolean
+		 * Character
+		 * Double
+		 * Float
+		 */
+		List<Integer> list = new ArrayList<>();
+		list.add(3);
+		list.add(6);
+		list.add(7);
+		list.add(4);
+		System.out.println(list);
+		System.out.println(list.get(2));
+		System.out.println(list.size());
+		
+		//autoboxing
+		// Java see's that you have a primitive and can automatically convert it 
+		// to the object representation for you
+//		Integer _int = 3;
+//		int _int2 = 3;
+		
+		/*
+		 * LinkedList: pointer implementation. uses "Nodes" to store your data
+		 * 				- not necessarily continuous in memory
+		 * 				- stores a pointer to the next element in the list
+		 * 				- does not support random access, only linear access
+		 * 				- doubly linked list implementation
+		 */
+		List<Integer> list2 = new LinkedList<>(); //paining
+		list2.add(3);
+		list2.add(6);
+		list2.add(7);
+		list2.add(4);
+		System.out.println(list2);
+		System.out.println(list2.get(2));
+		System.out.println(list2.size());
+		LinkedList<Integer> _list2 = (LinkedList) list2;
+		
+		//still a reference type
+		System.out.println("--------------");
+		System.out.println(list2.get(3));
+		System.out.println(_list2.get(3));
+		_list2.set(3, 27);
+		System.out.println(list2.get(3));
+		System.out.println(_list2.get(3));
+		
+		/*
+		 * Maps: Key value pairs, allows duplicated
+		 * 			-HashMap
+		 * 			-unsorted
+		 * 
+		 * Trees: Sorted branching data structure
+		 * 
+		 * Sets: similar to maps, do not allow duplicates
+		 */
+		Map<String, String> birthdays = new HashMap<>(); //unsorted
+		Map<String, String> sBirthdays = new TreeMap<>(); //sorted
+		birthdays.put("Dan Pickles", "01/12"); //replaces duplicate keys
+		sBirthdays.put("Dan Pickles", "01/12");
+		birthdays.put("Miles Mixon", "07/13");
+		sBirthdays.put("Miles Mixon", "07/13");
+		birthdays.put("Austin Reeves", "06/07");
+		sBirthdays.put("Austin Reeves", "06/07");
+		birthdays.put("Sean Carter", "07/08");
+		sBirthdays.put("Sean Carter", "07/08");
+		
+		//what you iterate over must implement iterable, so we use the entry set
+		System.out.println("Unsorted Map");
+		for (Map.Entry<String, String> entry : birthdays.entrySet()) {
+			System.out.println("Key: " + entry.getKey() + " Value: " + entry.getValue());
+		}
+		System.out.println(birthdays);
+		
+		System.out.println("Sorted Map");
+		for (Map.Entry<String, String> entry : sBirthdays.entrySet()) {
+			System.out.println("Key: " + entry.getKey() + " Value: " + entry.getValue());
+		}
+		System.out.println(sBirthdays);
+		
+		Set<String> hashSet = new HashSet<>();
+		hashSet.add("Dave");
+		hashSet.add("Richard");
+		hashSet.add("Mike");
+		hashSet.add("Greg");
+		hashSet.add("Greg");
+		System.out.println(hashSet);
+		
+		for (String name : hashSet) {
+			System.out.println(name);
+		}
+		
+		//without the foreach
+		//this is what a foreach loop does under the hood
+		Iterator<String> hashSetIterator = hashSet.iterator();
+		while (hashSetIterator.hasNext()) {
+			String temp = hashSetIterator.next(); //starts at null
+			System.out.println(temp);
+		}
+		
+		//queues and dequeues, usually use a linkedlist
+		//linkedlist has all of the methods for these
+		//queue: first in first out (FIFO)
+		//dequeue (stack): first in last out (FILO)
+		Queue<Integer> q = new LinkedList<>();
+		q.add(1);
+		q.add(2);
+		q.add(3);
+		q.add(4);
+		q.add(5);
+		
+		System.out.println(q.peek()); //see what is at the head without removing it
+		System.out.println(q.poll()); //will pop the head and return the value
+		System.out.println(q.poll()); //no indexed access
+		System.out.println(q.peek());
+		
+		//instantiate an inner class
+		//must go through the outer class
+//		Day3<String>.Node node = new Day3().new Node("");
+//		node.sayHello();
+		System.out.println("-------------------");
+		Day3<Integer> myLL = new Day3<>();
+		Day3<String> myLL2 = new Day3<>();
+		
+		myLL.AddHead(1);
+		myLL.AddHead(2);
+		myLL.AddHead(3);
+		
+		myLL2.AddHead("One");
+		myLL2.AddHead("Two");
+		myLL2.AddHead("Three");
+		
+		myLL.Print();
+		myLL2.Print();
+		
+		System.out.println("Second element: " + myLL.Get(1));
+		System.out.println("Second element: " + myLL2.Get(1));
+		System.out.println("");
+		
+		//File IO (Input/ Output)
+		//user input
+		Scanner in = new Scanner(System.in);
+		System.out.print("Enter a value: ");
+		//have to know what you're reading in ahead of time
+		//String input = in.nextLine();
+		//System.out.println("You entered: " + input);
+		
+		//if else, and switch statements manage code flow
+		/*
+		 * if (boolean) 
+		 * else if (boolean)
+		 * else
+		 * 
+		 * can chain else if statements
+		 */
+		int y = 49;
+		Object n = null;
+		
+		//runs whatever is true first
+		/* comparison operators
+		 * x > y : x greater than y
+		 * x < y : x less than y
+		 * x >= y : x greater than or equal to y
+		 * x <= y : x less than or equal to y
+		 * x == y : x equal to y
+		 * x != y : x not equal to y
+		 * 
+		 * logical operators
+		 * these do short circuit
+		 * if one side is true/ false it ends there
+		 * || :  or
+		 * && :  and
+		 * 
+		 * ! :  not
+		 * 
+		 * bitwise checks your bits
+		 * these do not short circuit, so they will always evaluate both sides of the operation
+		 * | : bitwise or 
+		 * & : bitwise and
+		 */
+		if (!(y > 50) || n.equals(3)) {
+			System.out.println("it was true");
+		} else if (y == 5) {
+			
+		} else if (y < 10) {
+			
+		} else {
+			//runs if nothing else it true
+			System.out.println("it wasnt true");
+		}
+		
+		//can do this, but only the first line under the statement belongs to it
+		//these are seperate
+		//y = 49
+		if (y < 48)
+			System.out.println("positive");
+			
+		if (y > 6 && y < 50)
+			System.out.println("greater than 6");
+		else
+			System.out.println("negative");	
+		
+		while(y > 46)
+			y--;
+		
+		System.out.println(y);
+		
+		switch (y) {
+			case 47:
+				System.out.println("case 1:" + y);
+				break; //the switch will execute the other block without this
+			case 46:
+				System.out.println("case 2:" + y);
+				break;
+			case 45:
+				System.out.println("case 3:" + y);
+				break;
+			default:
+				//will run if nothing else is true
+				System.out.println("Default statement");
+		}
+		
+		//break takes you out of the loop you are in/ switch statement
+		//continue takes you to the next iteration of the loop/ restarts it
+		for (int j = 46; j > 23; j--) {
+			if (j == 40) {
+				break;
+			} else if (j % 2 == 0) {
+				continue;
+			}
+			
+			System.out.println(j);
+		}
+		System.out.println("outside");
+		
+		//read in a file
+		MyFileReader.readFile();
+		MyFileReader.writeLines();
 	}
 	
 	//non-static method, so it can access both non-static and static methods/ fields
@@ -48,7 +328,7 @@ public class General {
 	//this is a checked exception
 	//means that whoever uses this method needs to handle this exception
 	public static void Day2Examples() throws Exception {
-		//Java is always pass by value, but objects are simialr to pass by reference
+		//Java is always pass by value, but objects are similar to pass by reference
 		//They pass the value of a reference for objects
 		// pass by value = passing a copy of the value
 		// pass by reference = passing the memory location

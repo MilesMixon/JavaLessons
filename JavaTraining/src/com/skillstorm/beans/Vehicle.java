@@ -10,6 +10,7 @@ public interface Vehicle {
 	int myValue = 5;
 	
 	//everything that implements Vehicle needs to implement these
+	//generally interfaces would just be abstract methods like these three
 	public String getInfo();
 	public String startEngine();
 	public String displayMileage();
