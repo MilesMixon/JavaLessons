@@ -16,11 +16,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
 
 import com.skillstorm.beans.Animal;
+import com.skillstorm.beans.CSVData;
 import com.skillstorm.beans.Cat;
 import com.skillstorm.beans.Day2;
 import com.skillstorm.beans.Day3;
@@ -30,6 +32,11 @@ import com.skillstorm.beans.Sedan;
 import com.skillstorm.beans.Truck;
 import com.skillstorm.beans.Vehicle;
 import com.skillstorm.exceptions.OopsYoureOutOfBoundsException;
+import com.skillstorm.threads.BankAccount;
+import com.skillstorm.threads.MySingleton;
+import com.skillstorm.threads.MySingleton2;
+import com.skillstorm.threads.TPerson;
+import com.skillstorm.threads.ProducerConsumer;
 
 public class General {
 	//static means that the method/ field is tied to the class, not the instance,
@@ -37,13 +44,384 @@ public class General {
 	public static String staticName = "Rick";
 	public static final String STRINGNAME = "Miles"; //generally you capitalize final variables
 	public String nonStaticName = "Joe"; //this is not static, so it cannot be accessed inside a static method
-
+	
 	// starting point for every application
 	public static void main(String[] args) throws Exception {
 		//this is where every application starts
 		//Day1Examples();
 		//Day2Examples();
-		Day3Examples();
+		//Day3Examples();
+		//StringComparisons();
+		//Day4Examples();
+		//ThreadingExamples();
+		ProducerConsumer();
+		
+		//javac YourFile.java to compile your application
+		//this creates a YourFile.class file which is the compiled version
+		//then you run java YourFile to run your application. You can pass an 
+		//arguments with that command
+		
+		//accessing args
+		for (String arg : args) {
+			System.out.println(arg);
+		}
+		//System.out.println(args.length);
+	}
+
+	//enum
+	//enumeration
+	enum Color {
+		BLUE, RED, GREEN, YELLOW, PURPLE
+	}
+	
+	public static void ProducerConsumer() {
+		//java.util.concurrent that helps with concurrently
+		//most classes in it are thread safe
+		Random rand = new Random();
+		ProducerConsumer pcExample = new ProducerConsumer();
+		List<Thread> tasks = new ArrayList<>();
+		
+		for (int k = 0; k < 2; k++) {
+			Thread producer = new Thread(() -> {
+				//value between 50 and 20 inclusive
+				int val = rand.nextInt(51 - 20) + 20;
+				
+				try {
+					for (int i = 0; i < 5; i++) {
+						pcExample.addProduce(val);
+						Thread.sleep(1000);
+					}
+				} catch (InterruptedException ex) {
+					ex.printStackTrace();
+				}
+			});
+			
+			Thread consumer = new Thread(() -> {
+				int val = rand.nextInt(61-10) + 10;
+				
+				try {
+					for (int i = 0; i < 5; i++) {
+						pcExample.consumeProduce(val);
+						Thread.sleep(1000);
+					}
+				} catch (InterruptedException ex) {
+					ex.printStackTrace();
+				}
+			});
+			
+			tasks.add(producer);
+			tasks.add(consumer);
+		}
+		
+		for (Thread thread : tasks) {
+			thread.start();
+		}
+		
+		try {
+			for (Thread thread : tasks) {
+				thread.join();
+			}
+		} catch (InterruptedException ex) {
+			ex.printStackTrace();
+		}
+		
+		System.out.println("finished");
+	}
+	
+	public static void ThreadingExamples() {
+		//a way to make a custom type with pre-defined choices for values
+		Color favoriteColor = Color.BLUE;
+		
+		//threading
+		//can have processes run concurrently (at the same time)
+		//basically the same time, but not actually
+		
+		//each thread has their own stack
+		//they cannot access eachother's variables
+		//lambda : anonymous function
+		// syntax () -> { } is the same as:
+		// void anonymousMethod() { }
+		Thread t1 = new Thread(() -> {
+			MySingleton2 s1 = MySingleton2.getInstance();
+			System.out.println("First: " + s1);
+		});
+		Thread t2 = new Thread(() -> {
+			MySingleton2 s2 = MySingleton2.getInstance();
+			System.out.println("Second: " + s2);
+		});
+		Thread t3 = new Thread(() -> {
+			MySingleton2 s3 = MySingleton2.getInstance();
+			System.out.println("Third: " + s3);
+		});
+		
+		//defining a thread does not kick it off
+		//they don't start until you tell them to
+		//execution order is not gauranteed for threads
+		t1.start();
+		t2.start();
+		t3.start();
+		
+		//threads take up memory until you call this method
+		try {
+			//this does not stop running threads, it just collects threads that are finished
+			t1.join();
+			t2.join();
+			t3.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		/*
+		 * Deadlock: When thread A has a resource thread B needs and thread B has a resource thread A
+		 * 			 needs, so both thread A and thread B are deadlocked because neither can proceed
+		 * 
+		 * Race Condition: when two threads would race to finish properly (when the MySingleton class works
+		 * 				   as intended while threaded)
+		 * 
+		 * Lost Write: a previous thread's write is overwritten by another thread
+		 * 
+		 * 
+		 * Thread States:
+		 * 		- new: thread was created
+		 * 		- runnable: thread is either currently running or is ready to run
+		 * 		- waiting: you tell a thread to wait on some condition
+		 * 		- timed waiting: you tell a thread to wait for an amount of time
+		 * 		- terminated: the thread is finished or the program crashed
+		 * 		- blocked: it tried to access some resource but has to wait
+		 */
+		
+		System.out.println("Bank Account threading example: ");
+		BankAccount act1 = new BankAccount(100);
+		BankAccount act2 = new BankAccount(100);
+		BankAccount act3 = new BankAccount(100);
+		
+		TPerson p1 = new TPerson("Dan Pickles", act1);
+		TPerson p2 = new TPerson("Jane Pickles", act1);
+		TPerson p3 = new TPerson("John Doe", act2);
+		TPerson p4 = new TPerson("Bob Ross", act3);
+		
+		List<Thread> tasks = new LinkedList<>();
+		
+		tasks.add(new Thread(() -> ManageAccount(p1)));
+		tasks.add(new Thread(() -> ManageAccount(p2)));
+		tasks.add(new Thread(() -> ManageAccount(p3)));
+		
+		Dog dog = new Dog("Sparky", "Black", true, true, "Husky");
+		
+		tasks.add(new Thread(() -> dog.threadTestMethod()));
+		
+		//Note for Random:
+		//random number between 30 and 70 inclusive
+		//Random rand = new Random();
+		//int num = rand.nextInt(41) + 30; 
+		//the difference between your low and high value is 40, add 1 so 70 is included
+		
+		//another way of defining a thread
+		tasks.add(new Thread(new Runnable() {
+
+			//every thread implements this. thread.start calls this method
+			@Override
+			public void run() {
+				try {
+					Random rand = new Random();
+					for (int i = 0; i < 3; i++) {
+						//two main ways to do random values
+						//Math.random
+						//Random class
+						// Math.random() * (high - low) + low
+						double val = rand.nextDouble() * (50.5 - 20.5) + 20.5;
+						p4.add(val);
+						Thread.sleep(3000); //milliseconds
+						val = rand.nextDouble() * (50.5 - 20.5) + 20.5;
+						p4.withdraw(val);
+					}
+				} catch (InterruptedException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}));
+		
+		tasks.add(new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					int j = 0;
+					
+					for (int i = 0; i < 3; i++) {
+						j += 2 * i + i;
+						System.out.println("Counter: " + j);
+						Thread.sleep(3000);
+					}
+					
+					System.out.println("Final Value: " + j);
+				} catch (InterruptedException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}));
+		
+		for (Thread thread : tasks) {
+			thread.start();
+		}
+		
+		try {
+			for (Thread thread : tasks) {
+				thread.join();
+			}
+		} catch (InterruptedException ex) {
+			ex.printStackTrace();
+		}
+		
+		System.out.println("All threads finished");
+		
+		/*
+		 * Other thread methods:
+		 * 
+		 * sleep(): enters a times wait
+		 * wait(): enters waiting state
+		 * notify(): return a single waiting thread to runnable
+		 * notifyAll(): returns all waiting threads to runnable
+		 * interrupt(): tell one thread to stop what it's doing
+		 */
+		
+		Thread newThread = new Thread(() -> {
+			try {
+				Thread.sleep(1200000000);
+			} catch (InterruptedException ex) {
+				System.out.println("Thread interrupted");
+			}
+		});
+		
+		newThread.start();
+		newThread.interrupt();
+		System.out.println("Back to non-thread code");
+		
+		try {
+			newThread.join();
+		} catch (InterruptedException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	public static void ManageAccount(TPerson p) {
+		try {
+			for (int i = 0; i < 3; i++) {
+				//two main ways to do random values
+				//Math.random
+				//Random class
+				// Math.random() * (high - low) + low
+				double val = Math.random() * (50.5 - 20.5) + 20.5;
+				p.add(val);
+				Thread.sleep(3000); //milliseconds
+				val = Math.random() * (50.5 - 20.5) + 20.5;
+				p.withdraw(val);
+			}
+		} catch (InterruptedException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	public static void Day4Examples() {
+		int[] myArray = new int[10];
+		int[][] my2DArray = new int[3][2]; //array of arrays
+		//these are matrixes
+		
+		for(int i = 0; i < my2DArray.length; i++) { //length of rows
+			for(int j = 0; j < my2DArray[0].length; j++) { //length of columns
+				my2DArray[i][j] = i + j;
+			}
+		}
+		
+		for(int i = 0; i < my2DArray.length; i++) { //length of rows
+			for(int j = 0; j < my2DArray[0].length; j++) { //length of columns
+				System.out.print(my2DArray[i][j] + " ");
+			}
+			System.out.println("");
+		}
+		
+		int[][] myArray2 = { { 3, 4, 5}, {2, 3}, {4} }; //can have jagged arrays
+		
+		for(int i = 0; i < myArray2.length; i++) { //length of rows
+			for(int j = 0; j < myArray2[i].length; j++) { //length of columns
+				System.out.print(myArray2[i][j] + " ");
+			}
+			System.out.println("");
+		}
+		
+		//all separate instances
+		Dog d1 = new Dog();
+		Dog d2 = new Dog();
+		Dog d3 = new Dog();
+		
+		System.out.println(d1);
+		System.out.println(d2);
+		System.out.println(d3);
+		
+		//singleton
+		//only should ever exist one instance of a singleton class
+		MySingleton single1 = MySingleton.getInstance();
+		MySingleton single2 = MySingleton.getInstance();
+		MySingleton single3 = MySingleton.getInstance();
+		
+		System.out.println(single1);
+		System.out.println(single2);
+		System.out.println(single3);
+	}
+	
+	public static void StringComparisons() {
+		//Strings
+		/* Strings are an object
+		 * Has a constructor, but can take what we call string literals
+		 */
+		
+		String s = "Miles Mixon"; //string literal
+		String s2 = new String("Miles Mixon");
+		String first = "Miles";
+		String last = "Mixon";
+		String fi = "Mil";
+		String fl = "es";
+		
+		System.out.println("String Value".length()); //can call methods on string literals directly
+		System.out.println(s);
+		System.out.println(s.replace('M', 'N')); //this creates a seperate string, does not change the original
+		System.out.println(s); //strings are immutable
+		
+		System.out.println(s == s2); //this looks at the memory location
+		System.out.println(s.equals(s2)); //this looks at the characters
+		
+		//Strings are arrays of characters
+		System.out.print("1. ");
+		System.out.println(s == first + " " + last); //false
+		System.out.print("2. ");
+		System.out.println(s == "Miles Mixon"); //True
+		System.out.print("3. ");
+		System.out.println(first == "Mil" + fl); //False
+		System.out.print("4. ");
+		System.out.println(first == "Miles"); //True
+		System.out.print("5. ");
+		System.out.println(new String("Miles") == "Miles"); //False
+		System.out.print("6. ");
+		System.out.println(new String("Miles") == first); //False
+		System.out.print("7. ");
+		System.out.println(s == fi + fl + " " + last); //False
+		System.out.print("8. ");
+		System.out.println(s2 == fi + fl + " " + last); //False
+		System.out.print("9. ");
+		System.out.println(s2 == first + " " + last); //false
+		System.out.print("10. ");
+		System.out.println(s2 == "Miles Mixon"); //True
+		System.out.print("11. ");
+		System.out.println(first == "Mil" + "es"); //True
+		System.out.print("12. ");
+		System.out.println(s.replace('M', 'M') == s.replace('M', 'M')); //true
+		System.out.print("13. ");
+		System.out.println(s.replace("M", "M") == s.replace("M", "M")); //false
+		
+		StringBuilder sb = new StringBuilder("String");
+		System.out.println(sb);
+		//can chain methods off of eachother. they change string builder's underlying string
+		sb.reverse().append("Stringify");
+		System.out.println(sb);
 	}
 	
 	public static void Day3Examples() {
@@ -313,6 +691,11 @@ public class General {
 		//read in a file
 		MyFileReader.readFile();
 		MyFileReader.writeLines();
+		List<CSVData> data = MyFileReader.parseCSV();
+		
+		for (CSVData csvData : data) {
+			System.out.println(csvData);
+		}
 	}
 	
 	//non-static method, so it can access both non-static and static methods/ fields

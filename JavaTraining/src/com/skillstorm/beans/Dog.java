@@ -21,6 +21,15 @@ public final class Dog extends Animal {
 		this.breed = breed;
 	}
 	
+	public void threadTestMethod() {
+		int i = 0;
+		
+		while (i < 3) {
+			System.out.println(name + ": Bark!!! " + i);
+			i++;
+		}
+	}
+	
 	//overriding
 	//changes the functionality, but keeps the method signature the same
 	@Override
