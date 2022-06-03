@@ -178,7 +178,7 @@ public class General {
 		 * Race Condition: when two threads would race to finish properly (when the MySingleton class works
 		 * 				   as intended while threaded)
 		 * 
-		 * Lost Write: a previous thread's write is overwritten by another thread
+		 * Lost Update: a previous thread's write is overwritten by another thread
 		 * 
 		 * 
 		 * Thread States:
