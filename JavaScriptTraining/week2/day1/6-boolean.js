@@ -77,7 +77,7 @@ console.log('The value after casting is: ' + !!1); // This does the same thing
 // NaN occurs whenever something really hammy goes on when trying to perform artithemetic and stuff fails
 console.log(typeof NaN);
 
-const num = 0;
+let num = 0;
 if (num) {
     console.log(num);
 } else {
@@ -102,3 +102,65 @@ if (num == null) {
 if (num) {
 
 }
+
+num = 20
+
+// Ternary
+const value = (num > 20) ? 'Good' : 'Bad';
+
+// Nested Ternary
+const value2 = (num > 20) ? 'Good' : (num == 20) ? 'Meh' : 'Bad';
+const value3 = (num != 20) ? (num > 20) ? 'Good' : 'Bad' : 'Meh';
+const value4 = (num == 20) ? 'Meh' : (num > 20) ? 'Good' : 'Bad';
+
+if (num == 20) {
+    console.log('Meh');
+} else if (num > 20) {
+    console.log('Good');
+} else {
+    console.log('Bad');
+}
+
+console.log(value);
+
+// Variable assignment using truthy/falsy
+
+function sumArray(nums) {
+    nums = Array.isArray(nums) ? nums : []; // ternary approach
+
+    let sum = 0;
+    for (let i = 0; i < nums.length; i++) {
+        sum += nums[i];
+    }
+    return sum;
+}
+
+// With addition, null will be translated to 0
+// undefined + any numeric value will NaN
+let ans = sumArray([1, null, undefined, '']); // 7
+console.log('Array sum: '+ typeof ans);
+
+// This is a channel on your computer that you expose to the outside world
+// Common to run a webserver on a port
+
+function determinePort(port) {
+    // If they gave me a truthy value for the port, use the port they provided
+    // If not, default to 8080
+    port = port || 9000;
+
+    // If port is null or undefined use 9000
+    // if (port == null) {
+    //     port = 9000;
+    // }
+
+    // This uses the port provided so long as it's not null/undefined
+    // If it is, use 9000
+    port = port ?? 9000; // Nullish Coalescing Operator
+    port ??= 9000;
+
+    return port;
+}
+
+console.log('The value of the boolean expression is: ' + (true && 500));
+
+console.log(`The port selected is ${determinePort('Hello World')}`);
