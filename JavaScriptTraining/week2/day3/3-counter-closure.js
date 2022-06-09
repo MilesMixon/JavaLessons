@@ -25,13 +25,15 @@ function counter(intitialCount=0) {
 
     // This determines what the outside world has access to
     // If it's not returned its private
-    return {
+    const ret = {
         add: increment,
         increment, // synonymous with increment: increment
         decrement,
         getCount,
         setCount: setCount
-    };
+    }
+    
+    return ret;
 }
 
 const myCounter = counter(5);
