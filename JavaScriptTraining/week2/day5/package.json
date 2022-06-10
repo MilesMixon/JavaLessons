@@ -1,0 +1,19 @@
+{
+  "name": "day5",
+  "version": "1.0.0",
+  "description": "A Nodejs project to practice NPM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "hello": "echo Hello World",
+    "start": "node http-server.js"
+  },
+  "author": "Sean Carter",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "jest": "^28.1.1"
+  }
+}

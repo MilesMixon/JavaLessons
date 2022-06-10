@@ -29,6 +29,28 @@ OPTIONS - Asks the server what options are allowed before moving forward
         Typically used in conjunction with CORS and authorization
 
 # HTTP Status Codes
+Status codes are used to indicate what happened during our HTTP request
+
+- 1xx Informational
+- 2xx Success
+- 3xx Redirects
+- 4xx Client Side Error (You messed up)
+- 5xx Server Side Error (They messed up)
+
+Specific Status Codes
+- 100 Continue (Continue with your operations, everything fine so far)
+- 200 OK (Successful operation) ***
+- 201 Created (Resource Created - Used with POST) *
+- 307 Temporary Redirect (Traffic Detour, Down temporaliy, will be back later) *
+- 308 Permanent Redirect (We'll redirect you, but please use this place instead)
+- 400 Bad Request (Syntax Error, Missing fields in request body) **
+- 401 Unauthorized (You don't have the credentials) *
+- 404 Not Found (Requested a resource that the server couldn't find or doesn't exist) ***
+- 405 Method Not Allowed (No CONNECT requests for example)
+- 418 I'm a teapot (April Fool's Joke) ********************
+- 500 Internal Server Error (Something went wrong) ***
+- 502 Bad Gateway (Request got messed up)
+- 504 Request Timeout (Request hung)
 
 # Idempotency
 - The ability to perform/apply the same method multiple times in conjunction and have the same effect each time
