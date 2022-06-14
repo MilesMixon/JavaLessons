@@ -8,8 +8,13 @@ router.get('/', async (req, res) => {
     res.json(movies);
 });
 
-router.post('/', (req, res) => {
-    res.send('POST create new movie!');
+router.post('/', async (req, res) => {
+    try {
+        const movieId = await createMovie(req.body);
+        res.status(201).json({_id: movieId});
+    } catch (err) {
+        res.status(err?.status || 500).json(err);
+    }
 });
 
 router.get('/:id', async (req, res) => {

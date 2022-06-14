@@ -17,7 +17,7 @@ app.use(logger);
 const movieRouter =  require('./routes/movie.route.js');
 
 app.use('/movies', movieRouter);
-app.use('/actors', require('./routes/actor.router'));
+app.use('/actors', require('./routes/actor.route'));
 
 app.all('*', (req, res) => {
     res.status(404).send('We don\'t have the resource you\'re looking for.');
