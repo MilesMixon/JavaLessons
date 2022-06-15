@@ -1,0 +1,51 @@
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.purple {
+    background-color: purple;
+}
+
+.pink {
+    background-color: pink;
+}
+
+.cyan {
+    background-color: cyan;
+}
+
+.teal {
+    background-color: teal;
+}
+
+.hulu-green {
+    background-color: #00ED82;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 60% 20% 20%;
+    gap: 10px; 
+}
+
+.item {
+    /*My preferred way to center text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    height: 3em; /* 3 times the height of font-size. AKA 90px height */
+    
+}

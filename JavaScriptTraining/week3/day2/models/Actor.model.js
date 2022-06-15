@@ -8,7 +8,7 @@ const actorSchema = new Schema({
     movies: [{
         title: String,
         year: String,
-        movieId: {
+        _id: {
             type: Schema.Types.ObjectId,
             ref: 'Movie'
         }

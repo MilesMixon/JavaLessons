@@ -16,10 +16,10 @@ const createMovie = async ({title, year, director, rating, leadActors, otherActo
         // I need to update the actors to add the new movie to their record
         // Typically this done with a transaction
         for (let actor of movie.leadActors) {
-            await addMovieToActor(actor.actorId, movie);
+            await addMovieToActor(actor._id, movie);
         }
         for (let actor of movie.otherActors) {
-            await addMovieToActor(actor.actorId, movie);
+            await addMovieToActor(actor._id, movie);
         }
 
         return movie._id; // Return the id of the newly created. Could also return the entire object

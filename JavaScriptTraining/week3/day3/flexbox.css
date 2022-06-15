@@ -1,0 +1,59 @@
+html {
+    font-size: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    html {
+        font-size: 32px;
+    }
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.container {
+    /* 
+        To make something a flexbox, we must specify in CSS that it is one
+    */
+    display: flex;
+    background-color: gray;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 50vh;
+}
+
+.item {
+    padding: 5px;
+    /*
+        Absolute Units:
+        - px
+        - cm
+        - in
+
+        Relative units (Based on screen size or some other metric):
+        - % of screen
+        - vh (view height. 20vh is 20% of the height of my display)
+        - vw (view width)
+        - em (contingent on the font size of the element itself)
+        - rem (contingent on the font size of the root element)
+    */
+    width: 10em;
+    height: 10em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* font-size: 10px; */
+}

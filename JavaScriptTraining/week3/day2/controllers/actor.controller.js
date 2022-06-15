@@ -19,7 +19,7 @@ const createActor = async ({firstName, lastName, imageURL, movies}) => {
 const addMovieToActor = async (_id, { title, year, _id: movieId }) => {
     try {
         // Pushes onto the array for the field 'movies', a new object containing title, year, and movieId
-        await Actor.findByIdAndUpdate(_id, { $push: { movies: { title, year, movieId } } });
+        await Actor.findByIdAndUpdate(_id, { $push: { movies: { title, year, _id: movieId } } });
     } catch (err) {
         console.error(err);
         throw { status: 400, message: err };

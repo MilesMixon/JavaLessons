@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Practice</title>
+    <style>
+        /* 
+            CSS Selectors are our way to target specific HTML elements to style
+
+            3 Main selectors:
+            - Element
+            - Class (Use . notation)
+            - Id (Use # notation)
+        */
+
+        /* 
+            Box-Model
+
+            4 Main components of the Box-Model:
+            1. Content (The actual content that will be displayed; the data inside the element)
+            2. Padding (The space in between the border and the content)
+            3. Border (Is boundary surrounding the content and padding)
+            4. Margin (The space between other elements)
+        */
+
+        body, html {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        h1 {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .red-box {
+            background-color: red;
+        }
+
+        #title {
+            font-size: 50px;
+        }
+
+        #my-box {
+            margin: 10px 0px 10px 50px;
+            padding-top: 20px;
+            border: 5px solid black;
+            background-color: blueviolet;
+            color: white;
+            text-align: center;
+            height: 100px;
+        }
+    </style>
+    <link rel="stylesheet" href="style-practice.css" />
+</head>
+<body>
+    <div><h1 id="title" class="red-box">Style Practice</h1></div>
+    <div><a href="index.html">Link to index.html</a></div>
+    <div style="color: blue; font-size: 30px;">Styled Div</div>
+    <div class="red-box">Hello!</div>
+    <br />
+    <div class="red-box">World!</div>
+
+    <div id="my-box">
+        <div>My Box</div>
+        <div>More text</div>
+        <div>Even more text</div>
+    </div>
+    <p>Hello</p>
+</body>
+</html>

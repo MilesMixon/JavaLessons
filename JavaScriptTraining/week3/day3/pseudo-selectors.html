@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudo Selector Practice</title>
+    <style>
+        .box {
+            background-color: red;
+            height: 100px;
+            width: 100px;
+            margin: auto;
+            text-align: center;
+            transition: background-color 0.5s;
+        }
+
+        /* Applies these styles only when hovering an element with a class box */
+        .box:hover {
+            background-color: blue;
+            
+        }
+
+        a {
+            transition: color 0s;
+            text-decoration: none;
+        }
+
+        a:active {
+            color: #dd8604;
+        }
+
+        a:visited {
+            color: #1cd073;   
+        }
+
+        a:hover {
+            color: rgb(218, 37, 131);
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <br><br><br><br><br><br><br><br><br><br>
+    <a href="https://www.google.com" target="_blank">Link to Google!</a>
+    <a href="https://www.bing.com" target="_blank">Link to Bing!</a>
+</body>
+</html>

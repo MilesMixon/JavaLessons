@@ -53,14 +53,14 @@ const movieSchema = new Schema({
         lastName: String,
         imageURL: String,
         // If they want the rest of actor data, they have the actorId
-        actorId: {
+        _id: {
             type: Schema.Types.ObjectId, // This symbolizes a MongoDB _id
             ref: 'Actor' // Refer to another Mongoose model
         }
     }],
     // I will only reference
     otherActors: [{
-        actorId: {
+        _id: {
             type: Schema.Types.ObjectId, // This symbolizes a MongoDB _id
             ref: 'Actor' // Refer to another Mongoose model
         }
