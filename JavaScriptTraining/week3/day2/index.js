@@ -2,10 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const logger = require('./middleware/logger');
 require('dotenv').config(); // One and done so I don't need the value from require
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 8080; // Default to 8080 if not in .env
 app.use(express.json()); // This is middleware that auto parses JSON into JS objects between each HTTP request and the endpoint
+app.use(cors()); // Allow all traffic
 app.use(logger);
 
 // use() function is used to have the app/router use a piece of middleware
