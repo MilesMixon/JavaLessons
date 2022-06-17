@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppNav } from './features';
-import { Landing, Movies, Error } from './pages';
+import { Landing, Movies, Error, ReduxExamples, Translations } from './pages';
 import ThemeContext, { themes } from './contexts/ThemeContext';
 
 
@@ -21,6 +21,7 @@ const App = () => {
     }
 
     return (
+        // This wraps all of its children in the context, all children can read from it
         <ThemeContext.Provider value={currTheme}>
             {/* Everything in here is going to managed by react-router-dom so that it can toggle between pages */}
             <BrowserRouter>
@@ -31,6 +32,8 @@ const App = () => {
                     <Route path="/" element={<Landing />} />
                     <Route path="/movies" element={<Movies />} />
                     <Route path="/movies/abc" element={<h1>ABC movie</h1>} />
+                    <Route path="/redux" element={<ReduxExamples />} />
+                    <Route path="/translations" element={<Translations />} />
                     <Route path="*" element={<Error />} />
                 </Routes>
             </BrowserRouter>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { PropComponent } from "../components/PropComponent";
 import { RefExample } from "../components/RefExample";
 import { CSSComponent, StyledComponents, Center } from "../components/StylePractice";
@@ -15,6 +16,7 @@ export const Landing = () => {
         setShouldRender(!shouldRender);
     }
 
+    const username = useSelector(store => store.username);
 
     return (
         <>
@@ -23,7 +25,7 @@ export const Landing = () => {
             {/* if shouldRender is true, render ClassCounter, if not don't */}
             {/* {shouldRender && <ClassCounter />} */}
             {/* {shouldRender && <FunctionCounter />} */}
-            <PropComponent name="Jimmy" age={12}>
+            <PropComponent name={username} age={12}>
                 <p>
                     <PropComponent name="Sally" age={14} >
                         <h3>"Hi! My name is Sally and I like to bike!"</h3>
