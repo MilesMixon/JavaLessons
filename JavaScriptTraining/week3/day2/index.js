@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const logger = require('./middleware/logger');
 require('dotenv').config(); // One and done so I don't need the value from require
-const cors = require('cors');
+const cors = require('cors'); // Cross Origin Resource Sharing
 
 const app = express();
 const PORT = process.env.PORT || 8080; // Default to 8080 if not in .env
