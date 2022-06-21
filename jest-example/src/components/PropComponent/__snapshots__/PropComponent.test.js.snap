@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders properly 1`] = `
+Array [
+  <h1>
+    Name: 
+    TestName
+  </h1>,
+  <h2>
+    Age: 
+    21
+  </h2>,
+  <p>
+    Test Text
+  </p>,
+]
+`;

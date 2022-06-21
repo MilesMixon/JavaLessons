@@ -39,6 +39,22 @@ public class Sedan implements Vehicle {
 		this.model = model;
 	}
 	
+	public boolean validateAge(int age, String action) {
+		if (age < 0) {
+			throw new IllegalArgumentException("Invalid age");
+		}
+		switch(action) {
+			case "license":
+				return age >= 18 ? true : false;
+			case "learners":
+				return age >= 16 ? true : false;
+			case "passenger":
+				return true;
+			default:
+				throw new IllegalArgumentException("Invalid action");
+		}
+	}
+	
 	@Override
 	public String getInfo() {
 		return String.format("I am a %s %s %s", year, make, model);
