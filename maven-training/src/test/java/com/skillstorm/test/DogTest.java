@@ -2,11 +2,11 @@ package com.skillstorm.test;
 
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import com.skillstorm.beans.Dog;
 
@@ -20,8 +20,8 @@ public class DogTest {
 	//you write the tests first, and then write the code to make the test pass
 	private Dog testDog;
 	
-	//BeforeEach in JUnit 5, but is @Before in JUnit 4
-	@BeforeEach
+	//runs before each test
+	@Before
 	public void setup() {
 		//have one value i can always reference for each test
 		//setup before every test

@@ -2,11 +2,10 @@ package com.skillstorm.test;
 
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import com.skillstorm.beans.Sedan;
 
@@ -21,7 +20,7 @@ public class SedanTest {
 	//Never want to test against production information
 	//Always want to use test systems that mirror production
 	
-	@BeforeEach
+	@Before
 	public void setup() {
 		//used to create a fresh set of data
 		//setup your database table if testing against a database
@@ -40,8 +39,8 @@ public class SedanTest {
 	}
 	
 	//can test that an exception is thrown
-	@Test
+	@Test(expected = IndexOutOfBoundsException.class)
 	public void displayMileageThrowsIndexOutOfBounds() throws Exception {
-		assertThrows(IndexOutOfBoundsException.class, () -> { testCar.displayMileage(); });
+		testCar.displayMileage();
 	}
 }

@@ -50,9 +50,9 @@ public class Sedan implements Vehicle {
 	}
 
 	@Override
-	public String displayMileage() throws FileNotFoundException {
-		//throw new IndexOutOfBoundsException();
-		throw new FileNotFoundException();
+	public String displayMileage() throws Exception {
+		throw new IndexOutOfBoundsException();
+		//throw new FileNotFoundException();
 	}
 
 	@Override
