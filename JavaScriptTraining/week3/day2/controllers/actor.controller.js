@@ -26,4 +26,9 @@ const addMovieToActor = async (_id, { title, year, _id: movieId }) => {
     }
 }
 
-module.exports = { createActor, addMovieToActor };
+const findAllActors = async () => {
+    const actors = await Actor.find();
+   return actors; 
+}
+
+module.exports = { createActor, addMovieToActor, findAllActors };

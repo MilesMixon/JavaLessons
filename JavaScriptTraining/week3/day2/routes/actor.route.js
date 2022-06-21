@@ -1,9 +1,10 @@
 const router = require('express').Router();
-const { createActor } = require('../controllers/actor.controller');
+const { createActor, findAllActors } = require('../controllers/actor.controller');
 // A router functions the same as your standard app, but it's a subsection of your app
 
-router.get('/', (req, res) => {
-    res.send('GET all actors');
+router.get('/', async (req, res) => {
+    const actors = await findAllActors();
+    res.json(actors);
 });
 
 router.post('/', async (req, res) => {

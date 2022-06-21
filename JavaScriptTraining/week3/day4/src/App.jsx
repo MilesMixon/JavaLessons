@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppNav } from './features';
 import { Landing, Movies, Error, ReduxExamples, Translations } from './pages';
 import ThemeContext, { themes } from './contexts/ThemeContext';
+import { ActorForm } from './components/ActorForm';
 
 
 // React function based component
@@ -34,6 +35,7 @@ const App = () => {
                     <Route path="/movies/abc" element={<h1>ABC movie</h1>} />
                     <Route path="/redux" element={<ReduxExamples />} />
                     <Route path="/translations" element={<Translations />} />
+                    <Route path="/new-actor" element={<ActorForm />} />
                     <Route path="*" element={<Error />} />
                 </Routes>
             </BrowserRouter>

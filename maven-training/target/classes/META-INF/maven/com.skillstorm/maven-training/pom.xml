@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.skillstorm</groupId>
+  <artifactId>maven-training</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <!-- this is where all of your dependencies and package information goes
+  		this looks a lot like html, but it is xml -->
+  		
+  <!-- 
+  		Project Coordiantes
+  			- groupID: orginization
+  			- artifactID: project name
+  			- version: version number of the project (major.minor.incrmental)
+  	
+  		Maven
+  			- manage your project dependencies
+  			- checks locally first for your dependencies. check ~/.m2/repository
+  			- provides build automation based on the POM
+  				- Project Object Model
+  				- Maven's configuration file
+  				
+  		Order Maven Searched for Dependencies
+  			1. Local Repository (default location: ~/.m2/repository)
+  			2. private remote repository (if you set any up)
+  			3. public remote repository (maven central)
+  				- Moves them to local after grabbing them
+  				
+  		Maven Build Lifecycle
+  			- stages
+  				1. validate project
+  				2. compile the code
+  				3. package project
+  				4. install or save to your machine
+  				5. deploy to a server
+  			- goals
+  				- maven build
+  				- maven package
+  				- maven install
+  				etc.
+   -->
+  		
+	<!-- tells maven to use Java 8, it defaults to Java 5 --> 
+	<properties>
+	  <maven.compiler.source>1.8</maven.compiler.source>
+	  <maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+  
+  <!-- JUnit for testing -->
+	<dependencies> <!-- all of your dependencies go between these tags -->
+	  <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+	  <dependency>
+		    <groupId>org.junit.jupiter</groupId>
+		    <artifactId>junit-jupiter-api</artifactId>
+		    <version>5.8.2</version>
+		    <scope>test</scope>
+	  </dependency>
+	</dependencies>
+</project>

@@ -24,6 +24,9 @@ export const AppNav = () => {
                 <NavItem>
                     <NavLink to="/translations">Translations</NavLink>
                 </NavItem>
+                <NavItem>
+                    <NavLink to="/new-actor">New Actor</NavLink>
+                </NavItem>
             </NavSection>
             <NavSection jc="flex-end">
                 {/* If the username is truthy, render the hello message, otherwise don't render anything */}

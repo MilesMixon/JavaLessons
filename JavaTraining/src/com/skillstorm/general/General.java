@@ -32,6 +32,10 @@ import com.skillstorm.beans.Sedan;
 import com.skillstorm.beans.Truck;
 import com.skillstorm.beans.Vehicle;
 import com.skillstorm.exceptions.OopsYoureOutOfBoundsException;
+import com.skillstorm.factory.PSFactory;
+import com.skillstorm.factory.Remote;
+import com.skillstorm.factory.RemoteFactory;
+import com.skillstorm.factory.XBFactory;
 import com.skillstorm.threads.BankAccount;
 import com.skillstorm.threads.MySingleton;
 import com.skillstorm.threads.MySingleton2;
@@ -54,7 +58,8 @@ public class General {
 		//StringComparisons();
 		//Day4Examples();
 		//ThreadingExamples();
-		ProducerConsumer();
+		//ProducerConsumer();
+		FactoryExample();
 		
 		//javac YourFile.java to compile your application
 		//this creates a YourFile.class file which is the compiled version
@@ -62,10 +67,43 @@ public class General {
 		//arguments with that command
 		
 		//accessing args
-		for (String arg : args) {
-			System.out.println(arg);
-		}
+//		for (String arg : args) {
+//			System.out.println(arg);
+//		}
 		//System.out.println(args.length);
+	}
+	
+	public static void FactoryExample() {
+		//factory pattern
+		//The factory is responsible for building the object and getting those pieces together
+		//the pieces themselves/ how it gets them is completely abstracted away
+		//there are some "coupling points" where everything ties together
+		//factory pattern promotes loose coupling
+		RemoteFactory factory = null;
+		Scanner in = new Scanner(System.in);
+		System.out.println("What type of remote do you want?: ");
+		String request = in.nextLine();
+		
+		switch(request.toLowerCase()) {
+			case "playstation":
+				factory = new PSFactory();
+				break;
+			case "xbox":
+				factory = new XBFactory();
+				break;
+			default:
+				System.out.println("We dont have those");
+				break;
+		}
+		
+		//defined some basic functionality in Remote
+		Remote remote = factory.getRemote();
+		System.out.println("Remote information: ");
+		System.out.println("Remote type: " + remote.getRemoteType());
+		System.out.println("Remote company: " + remote.getCompany());
+		System.out.println("Remote wire: " + remote.getWire());
+		System.out.println("Remote battery: " + remote.getBatteries());
+		System.out.println(remote.plugInRemote(7));
 	}
 
 	//enum

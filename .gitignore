@@ -24,4 +24,4 @@ hs_err_pid*
 /.metadata/
 
 # node_modules
-node_modules
+node_modules/
