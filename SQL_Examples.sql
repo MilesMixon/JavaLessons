@@ -124,3 +124,154 @@ VALUES
     ('Jason Bourne', 'Blue', 'Justice', 36);
     
 SELECT * FROM owners;
+
+# %: any number of characters
+# _: one character
+SELECT * FROM owners WHERE favoriteColor LIKE 'B%';
+
+SELECT * FROM owners WHERE name LIKE '_e%';
+
+SELECT * FROM chinook.artist WHERE Name LIKE '___';
+
+SELECT * FROM owners;
+SELECT * FROM vehicles;
+
+# can use union to combine the output of two queries into one result set
+SELECT * FROM owners WHERE favoriteColor LIKE '_l%' 
+UNION
+SELECT * FROM owners WHERE name LIKE '_a%';
+
+
+
+UPDATE vehicles SET owner = 6 WHERE id= 2;
+UPDATE vehicles SET owner = 1 WHERE id= 6;
+UPDATE vehicles SET owner = 4 WHERE id= 7;
+UPDATE vehicles SET owner = 6 WHERE id= 3;
+UPDATE vehicles SET owner = 7 WHERE id= 1;
+UPDATE vehicles SET owner = 3 WHERE id= 11;
+UPDATE vehicles SET owner = 5 WHERE id= 12;
+UPDATE vehicles SET owner = 10 WHERE id= 15;
+UPDATE vehicles SET owner = 2 WHERE id= 8;
+
+select * from vehicles join owners on vehicles.owner = owners.id;
+#the same as a n inner join
+select 
+	CONCAT(v.year, " ", v.make, " ", v.model) as vehicle, 
+    v.color, 
+    v.price, 
+    o.name, 
+    o.favoriteColor, 
+    o.age 
+from vehicles v join owners o on v.owner = o.id;
+#same as above
+select 
+	CONCAT(v.year, " ", v.make, " ", v.model) as vehicle, 
+    v.color, 
+    v.price, 
+    o.name, 
+    o.favoriteColor, 
+    o.age 
+from vehicles v inner join owners o on v.owner = o.id;
+
+select 
+	CONCAT(v.year, " ", v.make, " ", v.model) as vehicle, 
+    v.color, 
+    v.price, 
+    o.name, 
+    o.favoriteColor, 
+    o.age 
+from vehicles v left join owners o on v.owner = o.id;
+
+select 
+	CONCAT(v.year, " ", v.make, " ", v.model) as vehicle, 
+    v.color, 
+    v.price, 
+    o.name, 
+    o.favoriteColor, 
+    o.age 
+from vehicles v right join owners o on v.owner = o.id;
+
+#another way do to an inner join
+select 
+	CONCAT(v.year, " ", v.make, " ", v.model) as vehicle, 
+    v.color, 
+    v.price, 
+    o.name, 
+    o.favoriteColor, 
+    o.age 
+from vehicles v, owners o where v.owner = o.id;
+
+select 
+	v.id,
+    CONCAT(v.year, " ", v.make, " ", v.model) as vehicle, 
+    v.color, 
+    v.price, 
+    o.name, 
+    o.favoriteColor, 
+    o.age 
+from vehicles v join owners o on v.owner = o.id WHERE v.id > 3;
+
+# Group By clause is used with aggregates 
+select 
+	o.name,
+    o.age,
+    o.favoriteColor,
+    SUM(v.id) as car_weight
+from vehicles v, owners o where v.owner = o.id GROUP BY o.id;
+
+select 
+	o.name,
+    o.age,
+    o.favoriteColor,
+    COUNT(v.id) as cars,
+    SUM(v.price) as debt
+from vehicles v, owners o where v.owner = o.id GROUP BY o.id;
+
+# having is used in conjunction with group by clauses
+# is is basically the where clause for a group by
+select 
+	o.name,
+    o.age,
+    o.favoriteColor,
+    COUNT(v.id) as cars,
+    SUM(v.price) as debt
+from vehicles v, owners o where v.owner = o.id GROUP BY o.id HAVING debt > 200000;
+
+# aggregate functions: any function that takes in a value/ set of values and returns a 
+# 						scalar
+/*
+	Some aggregates:
+					- AVG
+                    - COUNT
+					- MAX
+                    - MIN
+                    - SUM
+*/
+# scalar: a single numerical value
+
+SELECT * FROM owners;
+SELECT * FROM vehicles;
+
+# what is we wanted to check this first?
+# we can do that through transactions
+# Databases function using the principal of A.C.I.D.
+/*
+	Atomicity: Your queries either fail completely or succeed completely
+    Consistency: The database can only be brought from one valid state to another
+    Isolation: When running queries concurrently the end output is the same as running them sequentially
+    Durability: Once a transactions is committed it is permenant even in the case of database failure
+*/
+
+#Transactions run a set of queries as one unit
+# under the hood mysql wraps everything in a transaction unless I specifically tell it not to
+START TRANSACTION; #nothing past this point sticks until i tell it to
+# you tell transactions to save using commit and tell them to undo using rollback
+SELECT * FROM vehicles;
+UPDATE vehicles SET owner = 9 WHERE id= 4;
+UPDATE vehicles SET owner = 5 WHERE id= 5;
+UPDATE vehicles SET owner = 7 WHERE id= 9;
+SELECT * FROM vehicles;
+#ROLLBACK; # undo what the transaction was trying to do
+COMMIT; # saves the transaction and makes it permenant
+SELECT * FROM vehicles;
+ROLLBACK;
