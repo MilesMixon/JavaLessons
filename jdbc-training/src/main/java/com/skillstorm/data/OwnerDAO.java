@@ -61,8 +61,8 @@ public class OwnerDAO {
 			Statement stmt = conn.createStatement();
 			//SQL injection attacks
 			// can happen when text is sent straight through like this
-			String sql = "Select * from ownertable1 where name = " + name;
-			boolean test = stmt.execute(name);
+			String sql = "Select * from owners where name = " + name;
+			ResultSet test = stmt.executeQuery(sql);
 			//rs.next();
 //			result = new Owner(rs.getInt("id"), 
 //							   rs.getString("name"), 

@@ -34,10 +34,11 @@ public class IntroJDBC {
 //		System.out.println(dao.getAllOwners());
 		
 		//this is valid
-//		String name = "Drop table ownertable1;";
-//		dao.getByName(name);
+		//this will return all the data in the table
+		String name = "'Dan' UNION select * from owners;";
+		dao.getByName(name);
 		
-		System.out.println(dao.getById(3));
+		//System.out.println(dao.getById(3));
 	}
 
 	// you generally would not put your databse code in the same place as your main method

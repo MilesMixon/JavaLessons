@@ -141,7 +141,11 @@ SELECT * FROM owners WHERE favoriteColor LIKE '_l%'
 UNION
 SELECT * FROM owners WHERE name LIKE '_a%';
 
+# the equivalent of a minus
+SELECT * FROM owners o WHERE favoriteColor LIKE '_l%' AND o.id NOT IN 
+(SELECT o2.id FROM owners o2 WHERE name LIKE '_a%');
 
+SELECT * FROM owners WHERE id > 6 AND name NOT LIKE 'J%';
 
 UPDATE vehicles SET owner = 6 WHERE id= 2;
 UPDATE vehicles SET owner = 1 WHERE id= 6;
@@ -275,3 +279,5 @@ SELECT * FROM vehicles;
 COMMIT; # saves the transaction and makes it permenant
 SELECT * FROM vehicles;
 ROLLBACK;
+
+Select * from ownertable1 where name = 'Dan'; Drop Table ownertable1; -- 
