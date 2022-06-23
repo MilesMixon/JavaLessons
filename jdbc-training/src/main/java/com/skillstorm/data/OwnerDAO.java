@@ -62,7 +62,7 @@ public class OwnerDAO {
 			//SQL injection attacks
 			// can happen when text is sent straight through like this
 			String sql = "Select * from ownertable1 where name = " + name;
-			boolean test = stmt.execute(sql);
+			boolean test = stmt.execute(name);
 			//rs.next();
 //			result = new Owner(rs.getInt("id"), 
 //							   rs.getString("name"), 
