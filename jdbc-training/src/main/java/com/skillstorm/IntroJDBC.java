@@ -35,7 +35,10 @@ public class IntroJDBC {
 		
 		//this is valid
 		//this will return all the data in the table
-		String name = "'Dan' UNION select * from owners;";
+		//not all sql injection attacks are dropping the table, could be me just accessing data that i should
+		//not have access to
+		//String name = "'Dan' UNION select * from owners;";
+		String name = "'Dan' OR 1 = 1;"; //another way to return everything in the table
 		dao.getByName(name);
 		
 		//System.out.println(dao.getById(3));
