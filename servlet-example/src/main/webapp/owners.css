@@ -1,0 +1,22 @@
+#owner-listing {
+    background-color: cornflowerblue;
+}
+
+.submit-button {
+    background-color: green;
+    border: none;
+}
+
+h1 {
+    color: rgb(222, 11, 172);
+    text-align: center;
+    padding: 50px;
+}
+
+h2 {
+    color: cadetblue;
+}
+
+body {
+    background-color: coral;
+}
