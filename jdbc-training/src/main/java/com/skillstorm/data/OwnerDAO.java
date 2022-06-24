@@ -103,6 +103,14 @@ public class OwnerDAO {
 		Owner result = owner;
 		
 		try (Connection conn = DriverManager.getConnection(connString, username, password)) {
+			//if we wanted to do this in a transaction:
+			conn.setAutoCommit(false); //this turns on transactions
+			//everything is a transaction but it is usually autocommitted
+			//this gives me the control over when to commit or rollback
+			//all transactions/ everything for the most part goes through the connection object
+			
+			//everything is the same as before
+			
 //			String sql = "INSERT INTO owners (name, favoriteColor, favoriteFood, age) VALUES " 
 //						+ "('" + owner.getName() + "', '" 
 //						+ owner.getFavoriteColor() + "', '" 
@@ -114,12 +122,20 @@ public class OwnerDAO {
 			stmt.setString(2, owner.getFavoriteColor());
 			stmt.setString(3, owner.getFavoriteFood());
 			stmt.setInt(4, owner.getAge());
-			stmt.executeUpdate();
+			int res = stmt.executeUpdate(); //see if anythign was inserted
 			
-			//stmt.execute(sql, Statement.RETURN_GENERATED_KEYS);
-			ResultSet keys = stmt.getGeneratedKeys();
-			keys.next(); //still a result set, starts at null
-			result.setId(keys.getInt(1)); //get the first returned column
+			if (res != 0) {
+				//stmt.execute(sql, Statement.RETURN_GENERATED_KEYS);
+				ResultSet keys = stmt.getGeneratedKeys();
+				keys.next(); //still a result set, starts at null
+				result.setId(keys.getInt(1)); //get the first returned column
+				
+				//i have to tell sql to commit this change
+				conn.commit(); //save the change if everything is fine
+			} else {
+				System.out.println("res was: " + res);
+				conn.rollback(); //revert this change is something went wrong
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

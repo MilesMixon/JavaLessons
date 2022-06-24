@@ -27,9 +27,9 @@ public class IntroJDBC {
 		
 		OwnerDAO dao = new OwnerDAO();
 		
-//		Owner newOwner = new Owner(0, "Marcie Lucia", "Green", "Sushi", 27);
-//		
-//		dao.addOwner(newOwner);
+		Owner newOwner = new Owner(0, "Clark Kent", "Red", "Hamburger", 45);
+		
+		dao.addOwner(newOwner);
 //		
 //		System.out.println(dao.getAllOwners());
 		
@@ -38,8 +38,8 @@ public class IntroJDBC {
 		//not all sql injection attacks are dropping the table, could be me just accessing data that i should
 		//not have access to
 		//String name = "'Dan' UNION select * from owners;";
-		String name = "'Dan' OR 1 = 1;"; //another way to return everything in the table
-		dao.getByName(name);
+		//String name = "'Dan' OR 1 = 1;"; //another way to return everything in the table
+		//dao.getByName(name);
 		
 		//System.out.println(dao.getById(3));
 	}
