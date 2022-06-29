@@ -30,7 +30,10 @@ public class OwnerFilters implements Filter {
 		
 		//could potentially add a header, or check security here
 		HttpServletResponse resp = (HttpServletResponse) response;
-		resp.addHeader("Access-Control-Allow-Origin", "SomeOrigin");
+		resp.addHeader("Access-Control-Allow-Origin", "*");
+		resp.addHeader("Access-Control-Allow-Methods", "*");
+		resp.addHeader("Access-Control-Allow-Credentials", "true");
+		resp.addHeader("Access-Control-Allow-Headers", "*");
 		
 		// holds on to the request it intercepts until we tell it otherwise
 		// this forwards it along the chain

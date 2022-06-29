@@ -1,0 +1,13 @@
+Get angular CLI from here: https://angular.io/cli
+
+Angular:
+    - Component based
+        - Componenets are the building blocks of your pages
+    - Ideal for single page applications
+    - React uses JS/ JSX while Angualr uses TS
+    - Features code scaffolding
+    - Angular leverages Depencency Injection heavily
+    - Uses data binding heavily
+    - Does not use state
+    - React binding is one way
+    - Angular binding is two way

@@ -1,0 +1,27 @@
+<div>
+    <h2>Add Owner</h2>
+    <form id="new-owner" (ngSubmit)="create()" #ownerForm>
+        <div class="form-group">
+            <label for="Name" class="control-label">Name</label>
+            <input [(ngModel)]="newOwner.name" class="form-control" name="Name" id="Name" type="text" #Name="ngModel" />
+        </div>
+        <div class="form-group" class="control-label">
+            <label for="FavCol">Favorite Color</label>
+            <input [(ngModel)]="newOwner.favoriteColor" class="form-control" name="FavCol" id="FavCol" type="text" #FavCol="ngModel" />
+        </div>
+        <div class="form-group" class="control-label">
+            <label for="FavFood">Favorite Food</label>
+            <input [(ngModel)]="newOwner.favoriteFood" class="form-control" name="FavFood" id="FavFood" type="text" #FavFood="ngModel" />
+        </div>
+        <div class="form-group" class="control-label">
+            <label for="Age">Age</label>
+            <input [(ngModel)]="newOwner.age" class="form-control" id="Age" name="Age" type="number" step="1" min="0" #Age="ngModel" />
+        </div>
+        <div style="margin-top: 5px;">
+            <input class="btn btn-success submit-button" type="submit" value="Save"/>
+        </div>
+    </form>
+</div>
+<div>
+    {{ newOwner | json }}
+</div>

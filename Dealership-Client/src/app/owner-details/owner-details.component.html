@@ -1,0 +1,25 @@
+
+<!-- will hold the details of an owner -->
+<!-- renders only if the owner exists -->
+<div *ngIf="owner">
+    <div>
+        <label for="oId">Id: </label>
+        <span id="oId">{{ owner.id }}</span>
+    </div>
+    <div>
+        <label for="oName">Name: </label>
+        <span id="oName">{{ owner.name }}</span>
+    </div>
+    <div>
+        <label for="oFavFood">Favorite Food: </label>
+        <span id="oFavFood">{{ owner.favoriteFood }}</span>
+    </div>
+    <div>
+        <label for="oFavCol">Favorite Color: </label>
+        <span id="oFavCol">{{ owner.favoriteColor }}</span>
+    </div>
+    <div>
+        <label for="oAge">Age: </label>
+        <span id="oAge">{{ owner.age }}</span>
+    </div>
+</div>
