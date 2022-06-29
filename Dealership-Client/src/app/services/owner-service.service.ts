@@ -19,9 +19,9 @@ export class OwnerService {
     return this.http.get<Owner[]>(this.url, { observe: 'response' });
   }
 
-  find(owner: Owner): Observable<HttpResponse<Owner>> {
+  find(id: number): Observable<HttpResponse<Owner>> {
     //console.log(ownerId);
-    return this.http.get<Owner>(this.url + `?id=${owner.id}`, { observe: 'response' });
+    return this.http.get<Owner>(this.url + `?id=${id}`, { observe: 'response' });
   }
 
   save(owner: Owner): Observable<HttpResponse<Owner>> {

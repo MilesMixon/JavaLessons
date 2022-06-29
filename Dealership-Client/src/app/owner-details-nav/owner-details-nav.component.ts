@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Owner } from '../models/owner.model';
 import { OwnerService } from '../services/owner-service.service';
 
@@ -16,14 +16,13 @@ export class OwnerDetailsNavComponent implements OnInit {
   constructor(private activeRoute: ActivatedRoute, private ownerService: OwnerService) { }
 
   ngOnInit(): void {
-    this.activeRoute.data.subscribe(result => {
-      this.ownerId = result;
-      this.ownerService.find(this.ownerId).subscribe(data => {
+    this.activeRoute.params.subscribe((params: Params) => {
+      this.ownerService.find(params['id']).subscribe(data => {
         if (data.body != null) {
           this.owner = data.body;
         }
-      });
-    })
+      })
+    });
   }
 
 }
