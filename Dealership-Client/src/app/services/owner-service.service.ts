@@ -11,6 +11,7 @@ export class OwnerService {
 
   //angualr comes with http functionality
   // injects in this HttpCLient for me
+  // everything injected is a singleton
   constructor(private http: HttpClient) { }
 
   //Observables allow data binding to work

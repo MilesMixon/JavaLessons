@@ -1,0 +1,73 @@
+<div>
+    <h2>Add a Vehicle</h2>
+
+    <form [formGroup]="vehicleForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="make" class="form-label">Make</label>
+            <input type="text" id="make" name="make" formControlName="make" class="form-control" />
+            <div *ngIf="make != null && !make.valid && (make.dirty || make.touched)">
+                <div [hidden]="!make.errors?.['required']">
+                    Make is required
+                </div>
+                <div [hidden]="!make.errors?.['maxlength']">
+                    Make cannot be more than 45 characters
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <label for="model" class="form-label">Model</label>
+            <input type="text" id="model" name="model" formControlName="model" class="form-control" />
+            <div *ngIf="model != null && !model.valid && (model.dirty || model.touched)">
+                <div [hidden]="!model.errors?.['required']">
+                    Model is required
+                </div>
+                <div [hidden]="!model.errors?.['maxlength']">
+                    Model cannot be more than 45 characters
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <label for="year" class="form-label">Year</label>
+            <input type="number" id="year" name="year" formControlName="year" class="form-control" step="1" />
+            <div *ngIf="year != null && !year.valid && (year.dirty || year.touched)">
+                <div [hidden]="!year.errors?.['required']">
+                    Year is required
+                </div>
+                <div [hidden]="!year.errors?.['min']">
+                    Year cannot be before 1950
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <label for="color" class="form-label">Color</label>
+            <input type="text" id="color" name="color" formControlName="color" class="form-control" />
+        </div>
+
+        <div>
+            <label for="price" class="form-label">Price</label>
+            <input type="number" id="price" name="price" formControlName="price" class="form-control" step="0.01" min="0" />
+        </div>
+
+        <div formArrayName="parkingPermits">
+            <h2>Parking Permits</h2>
+            <button type="button" (click)="addPermits()">+ Add Permit</button>
+
+            <!-- can get the index of what im looping through -->
+            <div *ngFor="let permit of parkingPermits.controls; let i=index">
+                <label for="permit-{{ i }}">City:</label>
+                <input id="permit-{{ i }}" type="text" [formControlName]="i">
+            </div>
+        </div>
+
+        <div style="margin-top: 5px;">
+            <button type="submit" [disabled]="!vehicleForm.valid" class="btn btn-success">Submit</button>
+        </div>
+
+        <div>
+            {{ vehicleForm.value | json }}
+        </div>
+    </form>
+</div>

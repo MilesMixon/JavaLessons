@@ -7,9 +7,10 @@ import { AppComponent } from './app.component';
 import { OwnerListComponent } from './owner-list/owner-list.component';
 import { FounderComponent } from './founder/founder.component';
 import { NewOwnerComponent } from './new-owner/new-owner.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OwnerDetailsComponent } from './owner-details/owner-details.component';
 import { OwnerDetailsNavComponent } from './owner-details-nav/owner-details-nav.component';
+import { NewVehicleComponent } from './new-vehicle/new-vehicle.component';
 
 //where you setup the components that make up your application
 @NgModule({
@@ -19,13 +20,15 @@ import { OwnerDetailsNavComponent } from './owner-details-nav/owner-details-nav.
     FounderComponent,
     NewOwnerComponent,
     OwnerDetailsComponent,
-    OwnerDetailsNavComponent
+    OwnerDetailsNavComponent,
+    NewVehicleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

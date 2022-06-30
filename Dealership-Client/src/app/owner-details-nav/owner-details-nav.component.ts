@@ -10,7 +10,6 @@ import { OwnerService } from '../services/owner-service.service';
 })
 export class OwnerDetailsNavComponent implements OnInit {
   owner: Owner = new Owner(0, "None", "None", "None", 0);
-  ownerId: any;
 
   // use this to grab the active route and get the information from it
   constructor(private activeRoute: ActivatedRoute, private ownerService: OwnerService) { }

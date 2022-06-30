@@ -14,6 +14,7 @@ export class OwnerListComponent implements OnInit {
 
   constructor(private ownerService: OwnerService, private router: Router) { }
 
+  //called when this component is rendered
   ngOnInit(): void {
     //subscribe tells it to make the request
     this.ownerService.findAll().subscribe((data) => {
