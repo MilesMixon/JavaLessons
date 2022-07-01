@@ -1,0 +1,33 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+    <!-- you have to use this file to configure hibernate to connect to your database -->
+    
+<!-- once your have the above header it can go online to find the tags you need -->
+<hibernate-configuration>
+	<!-- What hibernate uses to create your sessions -->
+	<session-factory>
+		<!-- Same things you would have to create in jdbc you need to create here -->
+		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/zulmak</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">root</property>
+		
+		<!-- can get better perfomance with more connections, though can 
+			 overload your db with too many connections -->
+		<property name="connection.pool_size">10</property>
+		
+		<!-- hibernate needs to know how to transalte my hql into something'
+			the database understands -->
+		<!-- to find this just make a new class and change the superclass to "mysql" -->
+		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+		
+		<!-- would not want this in prod, but good for dev -->
+		<property name="show_sql">true</property>
+		
+		<!-- session factory also needs to know about my tables -->
+		<!-- needs the very specific, full name -->
+		<mapping class="com.skillstorm.beans.Owner"/>
+		<mapping class="com.skillstorm.beans.Vehicle"/>
+	</session-factory>
+</hibernate-configuration>
