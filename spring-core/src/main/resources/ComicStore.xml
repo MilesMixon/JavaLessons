@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- need to define anything you want spring to manage here -->
+	<!-- name: what I want to call it, 
+		 class is: what it actually is -->
+	<bean name="comic" class="com.skillstorm.beans.Marvel"></bean>
+	
+	<bean name="BookStore" class="com.skillstorm.beans.Library">
+		<!-- need to tell spring about the bean, and the references the bean has -->
+		<!-- setter injection -->
+		<!-- name: the name of the property/ field in the Library class -->
+		<!-- ref: name of the bean to inject/ wire -->
+		<property name="book" ref="comic"></property>
+		
+		<!-- constructor injection -->
+		<!-- <constructor-arg></constructor-arg> -->
+	</bean>
+</beans>
