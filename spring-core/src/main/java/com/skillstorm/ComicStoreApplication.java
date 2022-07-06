@@ -63,12 +63,12 @@ public class ComicStoreApplication {
 //		BooksAMillion store = context.getBean(BooksAMillion.class);
 //		store.readBook();
 		//ApplicationContext context = new AnnotationConfigApplicationContext(ZeldaConfig.class);
-		AbstractApplicationContext context = new ClassPathXmlApplicationContext("ZeldaCongig.xml");
+		//AbstractApplicationContext context = new ClassPathXmlApplicationContext("ZeldaCongig.xml");
 		//AbstractApplicationContext context = new AnnotationConfigApplicationContext(ZeldaConfig.class);
 		
-		System.out.println("Link is in use: " + context.getBean(Link.class));
-		
-		context.close();
+//		System.out.println("Link is in use: " + context.getBean(Link.class));
+//		
+//		context.close();
 	}
 
 }
