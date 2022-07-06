@@ -10,6 +10,19 @@ public class Interviewiee {
 	public boolean interview() {
 		System.out.println("Interviewiee: At the interview");
 		
+		//throw new NullPointerException();
+		return true;
+	}
+	
+	public boolean interwebbed() {
+		System.out.println("Interwebbing?");
+		
+		return true;
+	}
+	
+	public boolean interleaved() {
+		System.out.println("Interleaving?");
+		
 		return true;
 	}
 	

@@ -1,4 +1,4 @@
-package com.skillstorm.beans;
+package com.skillstorm.aspects;
 
 import org.springframework.stereotype.Component;
 
