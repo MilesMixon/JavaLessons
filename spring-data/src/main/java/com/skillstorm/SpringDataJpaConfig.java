@@ -21,10 +21,11 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.skillstorm.beans.Owner;
 import com.skillstorm.services.OwnerService;
 
 @Configuration
-@ComponentScan
+@ComponentScan("com.skillstorm")
 @PropertySource("classpath:owner.properties")
 @EnableJpaRepositories //allows it to scan for our repositories
 @EnableTransactionManagement //need this to be able to use transactions
@@ -49,8 +50,12 @@ public class SpringDataJpaConfig {
 		ApplicationContext context = new AnnotationConfigApplicationContext(SpringDataJpaConfig.class);
 		OwnerService service = context.getBean(OwnerService.class);
 		//System.out.println(service.findAll());
-		System.out.println(service.findByNameSimilar("%Ma%"));
+		//System.out.println(service.findByNameSimilar("%Ma%"));
 		//System.out.println(service.findByAge(26));
+		
+		System.out.println(service.add(new Owner("Jane Pickles", "Grey", "Hot Dogs", 38)));
+		System.out.println(service.findAll());
+		//System.out.println(service.findByCarPrice(15000));
 	}
 	
 	@Bean

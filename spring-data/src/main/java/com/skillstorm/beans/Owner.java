@@ -1,10 +1,14 @@
 package com.skillstorm.beans;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,11 +27,14 @@ public class Owner {
 	@Column
 	private int age;
 	
+	@OneToMany(mappedBy = "owner")
+	private Set<Vehicle> vehicles;
+	
 	public Owner() { }
 	
-	public Owner(int id, String name, String favoriteColor, String favoriteFood, int age) {
+	public Owner(String name, String favoriteColor, String favoriteFood, int age) {
 		super();
-		this.id = id;
+		//this.id = id;
 		this.name = name;
 		this.favoriteColor = favoriteColor;
 		this.favoriteFood = favoriteFood;
@@ -72,6 +79,14 @@ public class Owner {
 	
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public Set<Vehicle> getVehicles() {
+		return vehicles;
+	}
+
+	public void setVehicles(Set<Vehicle> vehicles) {
+		this.vehicles = vehicles;
 	}
 
 	@Override

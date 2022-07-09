@@ -10,6 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.skillstorm.beans.Owner;
 import com.skillstorm.mappers.OwnerRowCallbackHandler;
@@ -111,6 +113,21 @@ public class OwnerDao {
 		
 		List<Owner> results = rch.getBlues();
 		System.out.println(results);
+	}
+	
+	//tells spring that this entire method should be done in a transaction
+	//can use this annotaiton to set timeouts, set which exceptions cause a rollback, etc
+	//Can also set a "Propogation" which defines whether a new transaction should be made or if it
+	//should run as part of an existing one
+	@Transactional
+	public void updateValues() {
+		String sql = "Update owners set name = :name, favoriteColor = :value where id < 10";
+		
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("name", "Dan");
+		params.addValue("value", "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
+		
+		namedParamTemplate.update(sql, params);
 	}
 	
 	public void countRows() {

@@ -18,15 +18,19 @@ import org.springframework.context.ApplicationContextAware;
 //the lifecycle creates moments where we are able to jump back in and take back control from Spring
 public class Link implements BeanNameAware, BeanFactoryAware, ApplicationContextAware, InitializingBean, DisposableBean {
 	/*
-	 * 1. instantiate the bean (uses constructor)
-	 * 2. populate the properties (uses setters)
-	 * 3. set the bean name (if it's a prototype and needs to copy itself)
-	 * 4. BeanFactoryAware, it is made aware of the factory/ bean that made it
-	 * 5. Application context aware
-	 * 6. after properties set
-	 * 7. custom init
-	 * 8. destroy
-	 * 9. custom destroy
+	 * 1. Bean factory post processor
+	 * 2. instantiate the bean (uses constructor)
+	 * 3. populate the properties (uses setters)
+	 * 4. set the bean name (if it's a prototype and needs to copy itself, BeanNameAware)
+	 * 5. BeanFactoryAware, it is made aware of the factory/ bean that made it
+	 * 6. Application context aware
+	 * 7. postprocessor before initialization
+	 * 8. after properties set (InitializingBean)
+	 * 9. custom init
+	 * 10. postProcessor after initialization
+	 * 11. bean in use
+	 * 12. destroy (DisposableBean)
+	 * 13. custom destroy
 	 */
 
 	//need to follow best practices for the SPring lifecycle to work as intended
