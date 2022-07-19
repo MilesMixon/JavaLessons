@@ -3,6 +3,7 @@ package com.skillstorm.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.skillstorm.beans.Dinosaur;
@@ -24,5 +25,10 @@ public class DinoService {
 	
 	public Dinosaur find(int id) {
 		return repo.findById(id).get();
+	}
+	
+	public List<Dinosaur> findByCriteria(int page, int size) {
+		//pagination through spring data jpa. indexing starts at 0
+		return repo.findAll(PageRequest.of(page, size)).toList();
 	}
 }
