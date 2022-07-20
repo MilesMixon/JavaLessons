@@ -10,6 +10,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,8 +47,15 @@ public class DinosaurController {
 	//by default it's json
 	// /dino?page=val&size=val
 	//can make all of these optional
-	public List<Dinosaur> getDino(@RequestParam int page, @RequestParam int size) {
+	public List<Dinosaur> getDino(@RequestParam(required = false, defaultValue = "1") int page, 
+			@RequestParam(required = false, defaultValue = "1") int size, Authentication auth) {
 		//this is not a view, so i dont want it to go to the view resolver
+		
+		//can use the Auth object to grab the signed in user information
+		//can get the info the long way with
+		//SecurityContextHolder.getContext().getAuthentication();
+		//return new Dinosaur(page, auth.getName(), size+"");
+		
 		return dinoService.findByCriteria(page, size);
 		//return new Dinosaur(0, page+"", size+"");
 	}
