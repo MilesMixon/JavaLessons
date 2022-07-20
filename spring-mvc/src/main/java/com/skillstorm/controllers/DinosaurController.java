@@ -5,8 +5,11 @@ import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skillstorm.beans.DinoFavorites;
 import com.skillstorm.beans.Dinosaur;
 import com.skillstorm.services.DinoService;
 
@@ -31,8 +35,11 @@ public class DinosaurController {
 	@Autowired
 	DinoService dinoService;
 	
+	@Autowired
+	DinoFavorites favService;
+	
 	//@RequestMapping(path = "/dino", method = RequestMethod.GET)
-	@GetMapping("/dino")
+	@GetMapping("/dinos/criteria")
 	//@ResponseBody //this bypasses the view resolver
 	//tells spring to append whatever is returned to the body of the http response
 	//by default it's json
@@ -47,22 +54,34 @@ public class DinosaurController {
 	//@RequestMapping(path = "/dinos", method = RequestMethod.GET)
 	@GetMapping("/dinos")
 	//@ResponseBody
-	public List<Dinosaur> getAllDinos() {
-		return dinoService.getDinos();
+	public ResponseEntity<List<Dinosaur>> getAllDinos() {
+		
+		return ResponseEntity.ok(dinoService.getDinos());
+		//return dinoService.getDinos();
 	}
 	
-	@GetMapping("/dino/{id}/{name}")
+	@GetMapping("/dinos/{id}/{name}")
 	//id comes from the path, if the names match i dont need to tell it the name
 	public Dinosaur getDino(@PathVariable int id, @PathVariable String name) {
 		//System.out.println("name: " + name);
 		return dinoService.find(id);
 	}
 	
-	@PostMapping("/dino")
+	@GetMapping("/favorites")
+	public ResponseEntity<List<Dinosaur>> getFavs() {
+		return new ResponseEntity<List<Dinosaur>>(favService.getDinos(), HttpStatus.OK);
+	}
+	
+	@PostMapping("/dinos")
 	//i am being handed a new dinosaur in the request and would like to access it
 	//can do that with the @RequestBody annotation
-	public Dinosaur addDino(@RequestBody Dinosaur dino) {
-		return dinoService.save(dino);
+	public ResponseEntity<Dinosaur> addDino(@Valid @RequestBody Dinosaur dino) {
+		//can use this to pre-validate your incoming json
+		//return dino;
+		favService.add(dino);
+		
+		ResponseEntity<Dinosaur> response = new ResponseEntity<Dinosaur>(dinoService.save(dino), HttpStatus.CREATED);
+		return response;
 	}
 	
 	@GetMapping("/cookie")

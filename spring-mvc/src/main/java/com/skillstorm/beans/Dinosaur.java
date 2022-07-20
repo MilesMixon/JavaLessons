@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Dinosaur {
@@ -15,7 +19,14 @@ public class Dinosaur {
 	@Column
 	private String name;
 	@Column
+	//@NotEmpty //not null
+	@NotBlank //not null or empty string
 	private String color;
+	
+//	@Min(0)
+//	@Max(10000)
+//	//@javax.validation.constraints.
+//	private int someNumber;
 	
 	public Dinosaur() {
 //		this.id = 1;
@@ -53,6 +64,14 @@ public class Dinosaur {
 	public void setColor(String color) {
 		this.color = color;
 	}
+//
+//	public int getSomeNumber() {
+//		return someNumber;
+//	}
+//
+//	public void setSomeNumber(int someNumber) {
+//		this.someNumber = someNumber;
+//	}
 
 	@Override
 	public String toString() {

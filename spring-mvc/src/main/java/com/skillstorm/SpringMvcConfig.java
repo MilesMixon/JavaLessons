@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -30,12 +31,15 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.skillstorm.security.SpringSecurityConfig;
+
 @Configuration
 @EnableWebMvc
 @EnableJpaRepositories
 @EnableTransactionManagement
 //@ComponentScan("com.skillstorm") wont work
 //need WebMvcConfigurer to be able to map static resources
+@Import(SpringSecurityConfig.class)
 public class SpringMvcConfig implements WebApplicationInitializer, WebMvcConfigurer {
 
 	String url = "jdbc:mysql://localhost:3306/zulmak";
