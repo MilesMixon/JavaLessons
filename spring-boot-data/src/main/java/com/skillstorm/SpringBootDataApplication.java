@@ -2,6 +2,7 @@ package com.skillstorm;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,6 +26,9 @@ public class SpringBootDataApplication implements CommandLineRunner {
 //	@Autowired
 //	DinosaurRepository repo;
 	
+	@Value("${skillstorm.race.champion}")
+	private String raceChampion;
+	
 	//can have spring boot inject in a logger
 	//this creates a logger for this class
 	private static final Logger logger = Logger.getLogger(SpringBootDataApplication.class);
@@ -42,6 +46,7 @@ public class SpringBootDataApplication implements CommandLineRunner {
 		//spring boot gives you a free logger, with timestamps, thread ids, etc
 		//System.out.println("App started successfully");
 		logger.debug("App started successfully");
+		logger.info(raceChampion);
 		//logger.debug(repo.findAll());
 		/*
 		 * logging has different severity levels: from highest to lowest

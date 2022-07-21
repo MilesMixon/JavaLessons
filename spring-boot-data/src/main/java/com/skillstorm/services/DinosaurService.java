@@ -17,4 +17,8 @@ public class DinosaurService {
 	public List<Dinosaur> findAll() {
 		return repo.findAll();
 	}
+	
+	public Dinosaur save(Dinosaur dino) {
+		return repo.save(dino);
+	}
 }

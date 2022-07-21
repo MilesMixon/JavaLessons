@@ -1,0 +1,65 @@
+-- owner data
+insert into owners (id, name, favoriteColor, favoriteFood, age) values (1, 'Harper Westwood', 'Mauv', 'Cheese - Montery Jack', 56);
+insert into owners (id, name, favoriteColor, favoriteFood, age) values (2, 'Filip Alcide', 'Yellow', 'Bandage - Finger Cots', 54);
+insert into owners (id, name, favoriteColor, favoriteFood, age) values (3, 'Frasquito Wabersinke', 'Puce', 'Cake - French Pear Tart', 12);
+insert into owners (id, name, favoriteColor, favoriteFood, age) values (4, 'Tony Male', 'Goldenrod', 'Olives - Kalamata', 59);
+insert into owners (id, name, favoriteColor, favoriteFood, age) values (5, 'Roberta Constable', 'Yellow', 'Nut - Pecan, Halves', 8);
+insert into owners (id, name, favoriteColor, favoriteFood, age) values (6, 'Martelle Hightown', 'Turquoise', 'Sole - Fillet', 99);
+insert into owners (id, name, favoriteColor, favoriteFood, age) values (7, 'Aurel Ackery', 'Purple', 'Sauce - Soya, Light', 9);
+insert into owners (id, name, favoriteColor, favoriteFood, age) values (8, 'Deck Devo', 'Blue', 'Green Scrubbie Pad H.duty', 32);
+insert into owners (id, name, favoriteColor, favoriteFood, age) values (9, 'Madalena Cuer', 'Turquoise', 'Barramundi', 58);
+insert into owners (id, name, favoriteColor, favoriteFood, age) values (10, 'Danny Spain', 'Yellow', 'Pears - Bartlett', 69);
+insert into owners (id, name, favoriteColor, favoriteFood, age) values (11, 'Kassey Forbes', 'Purple', 'Wine - Pinot Noir Stoneleigh', 38);
+insert into owners (id, name, favoriteColor, favoriteFood, age) values (12, 'Salomi Kubica', 'Green', 'Bread - Rolls, Rye', 89);
+insert into owners (id, name, favoriteColor, favoriteFood, age) values (13, 'Aldus Whetson', 'Mauv', 'Yoplait - Strawbrasp Peac', 20);
+insert into owners (id, name, favoriteColor, favoriteFood, age) values (14, 'Lura Baron', 'Purple', 'Cape Capensis - Fillet', 59);
+insert into owners (id, name, favoriteColor, favoriteFood, age) values (15, 'Whitney Dionisi', 'Fuscia', 'Bagel - 12 Grain Preslice', 19);
+insert into owners (id, name, favoriteColor, favoriteFood, age) values (16, 'Fax Dutch', 'Pink', 'Absolut Citron', 42);
+insert into owners (id, name, favoriteColor, favoriteFood, age) values (17, 'Franklin Almond', 'Pink', 'Fudge - Cream Fudge', 5);
+insert into owners (id, name, favoriteColor, favoriteFood, age) values (18, 'Roxana Gill', 'Yellow', 'Garlic - Elephant', 94);
+insert into owners (id, name, favoriteColor, favoriteFood, age) values (19, 'Emmerich Shapiro', 'Purple', 'Bulgar', 58);
+insert into owners (id, name, favoriteColor, favoriteFood, age) values (20, 'Tabbie Top', 'Orange', 'Hold Up Tool Storage Rack', 53);
+
+-- vehicle data
+insert into vehicles (id, make, model, year, color, price, mileage, electric, ownerId) values (1, 'BMW', '6 Series', 2007, 'Teal', 989625.58, 121227, false, 5);
+insert into vehicles (id, make, model, year, color, price, mileage, electric, ownerId) values (2, 'Ford', 'Expedition', 1997, 'Goldenrod', 574867.56, 15838, false, 9);
+insert into vehicles (id, make, model, year, color, price, mileage, electric, ownerId) values (3, 'Honda', 'Passport', 1998, 'Blue', 56268.19, 56275, true, 17);
+insert into vehicles (id, make, model, year, color, price, mileage, electric, ownerId) values (4, 'Honda', 'Insight', 2001, 'Violet', 970605.64, 109196, true, 16);
+insert into vehicles (id, make, model, year, color, price, mileage, electric, ownerId) values (5, 'Ford', 'Escape', 2006, 'Puce', 254165.71, 10790, false, 11);
+insert into vehicles (id, make, model, year, color, price, mileage, electric, ownerId) values (6, 'BMW', '7 Series', 1992, 'Indigo', 181278.31, 150647, true, 8);
+insert into vehicles (id, make, model, year, color, price, mileage, electric, ownerId) values (7, 'Ford', 'Fusion', 2009, 'Aquamarine', 166118.15, 162412, false, 1);
+insert into vehicles (id, make, model, year, color, price, mileage, electric, ownerId) values (8, 'Mitsubishi', 'L300', 1990, 'Maroon', 849259.83, 109319, false, 6);
+insert into vehicles (id, make, model, year, color, price, mileage, electric, ownerId) values (9, 'Chevrolet', 'Lumina', 1993, 'Green', 341843.55, 53162, false, 14);
+insert into vehicles (id, make, model, year, color, price, mileage, electric, ownerId) values (10, 'Land Rover', 'Discovery', 2000, 'Turquoise', 435649.1, 166448, true, 3);
+insert into vehicles (id, make, model, year, color, price, mileage, electric, ownerId) values (11, 'Daewoo', 'Nubira', 2001, 'Indigo', 858799.39, 20905, false, 1);
+insert into vehicles (id, make, model, year, color, price, mileage, electric, ownerId) values (12, 'Mercury', 'Grand Marquis', 1989, 'Red', 662680.9, 97038, true, 5);
+insert into vehicles (id, make, model, year, color, price, mileage, electric, ownerId) values (13, 'Mitsubishi', 'Challenger', 2000, 'Teal', 920721.87, 60499, true, 18);
+insert into vehicles (id, make, model, year, color, price, mileage, electric, ownerId) values (14, 'Ford', 'Explorer', 2000, 'Blue', 109997.25, 198633, true, 3);
+insert into vehicles (id, make, model, year, color, price, mileage, electric, ownerId) values (15, 'Ford', 'Freestar', 2004, 'Aquamarine', 692111.21, 49954, false, 1);
+insert into vehicles (id, make, model, year, color, price, mileage, electric, ownerId) values (16, 'Mercury', 'Sable', 1994, 'Crimson', 421714.31, 69371, true, 13);
+insert into vehicles (id, make, model, year, color, price, mileage, electric, ownerId) values (17, 'Aston Martin', 'DB9', 2005, 'Yellow', 952583.52, 79598, true, 5);
+insert into vehicles (id, make, model, year, color, price, mileage, electric, ownerId) values (18, 'Pontiac', 'Trans Sport', 1999, 'Blue', 111201.97, 61008, true, 16);
+insert into vehicles (id, make, model, year, color, price, mileage, electric, ownerId) values (19, 'Ford', 'Focus', 2006, 'Blue', 404462.34, 68893, true, 18);
+insert into vehicles (id, make, model, year, color, price, mileage, electric, ownerId) values (20, 'Chevrolet', 'Express 1500', 1996, 'Indigo', 614189.54, 170234, true, 18);
+
+-- dinosaur data
+insert into dinosaurs (id, name, color) values (1, 'Suricata suricatta', 'Maroon');
+insert into dinosaurs (id, name, color) values (2, 'Alopochen aegyptiacus', 'Yellow');
+insert into dinosaurs (id, name, color) values (3, 'Cacatua tenuirostris', 'Green');
+insert into dinosaurs (id, name, color) values (4, 'Felis silvestris lybica', 'Orange');
+insert into dinosaurs (id, name, color) values (5, 'Oryx gazella callotis', 'Red');
+insert into dinosaurs (id, name, color) values (6, 'Vanellus armatus', 'Blue');
+insert into dinosaurs (id, name, color) values (7, 'Fratercula corniculata', 'Green');
+insert into dinosaurs (id, name, color) values (8, 'Macaca radiata', 'Blue');
+insert into dinosaurs (id, name, color) values (9, 'Ara ararauna', 'Turquoise');
+insert into dinosaurs (id, name, color) values (10, 'Cebus nigrivittatus', 'Blue');
+insert into dinosaurs (id, name, color) values (11, 'Ictonyx striatus', 'Crimson');
+insert into dinosaurs (id, name, color) values (12, 'Ursus maritimus', 'Teal');
+insert into dinosaurs (id, name, color) values (13, 'Neophron percnopterus', 'Violet');
+insert into dinosaurs (id, name, color) values (14, 'Eudyptula minor', 'Goldenrod');
+insert into dinosaurs (id, name, color) values (15, 'Ceryle rudis', 'Blue');
+insert into dinosaurs (id, name, color) values (16, 'Acrobates pygmaeus', 'Orange');
+insert into dinosaurs (id, name, color) values (17, 'Phoca vitulina', 'Green');
+insert into dinosaurs (id, name, color) values (18, 'Zosterops pallidus', 'Goldenrod');
+insert into dinosaurs (id, name, color) values (19, 'Damaliscus dorcas', 'Green');
+insert into dinosaurs (id, name, color) values (20, 'Tachyglossus aculeatus', 'Aquamarine');
