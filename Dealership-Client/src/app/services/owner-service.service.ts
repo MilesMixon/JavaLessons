@@ -7,7 +7,8 @@ import { Owner } from '../models/owner.model';
   providedIn: 'root'
 })
 export class OwnerService {
-  url: string = "http://localhost:8080/servlet-example/api/owners";
+  //url: string = "http://localhost:8080/servlet-example/api/owners";
+  url: string = "http://localhost:4631/owners/v1";
 
   //angualr comes with http functionality
   // injects in this HttpCLient for me
@@ -22,7 +23,8 @@ export class OwnerService {
 
   find(id: number): Observable<HttpResponse<Owner>> {
     //console.log(ownerId);
-    return this.http.get<Owner>(this.url + `?id=${id}`, { observe: 'response' });
+    //return this.http.get<Owner>(this.url + `?id=${id}`, { observe: 'response' });
+    return this.http.get<Owner>(this.url + `/${id}`, { observe: 'response' });
   }
 
   save(owner: Owner): Observable<HttpResponse<Owner>> {

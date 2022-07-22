@@ -3,6 +3,7 @@ package com.skillstorm.services;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.jboss.logging.Logger;
@@ -48,6 +49,26 @@ public class OwnerService {
 		return models;
 	}
 	
+	public OwnerModel findById(int id) {
+		OwnerModel owner;
+		Optional<Owner> temp = repository.findById(id);
+		
+		if (temp.isPresent()) {
+			owner = new OwnerModel(temp.get());
+			
+			Set<VehicleModel> tempV = new HashSet<>();
+			for (Vehicle vehicle : temp.get().getVehicles()) {
+				tempV.add(new VehicleModel(vehicle));
+			}
+			
+			owner.setVehicles(tempV);
+		} else {
+			owner = new OwnerModel();
+		}
+		
+		return owner;
+	}
+	
 	public List<Owner> findByNameSimilar(String name) {
 		return repository.findByNameLike(name);
 	}
@@ -65,8 +86,10 @@ public class OwnerService {
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Owner add(Owner owner) {
-		//return repository.saveAndFlush(owner);
-		return repository.save(owner);
+	public OwnerModel add(OwnerModel owner) {
+		Owner dbOwner = repository.save(new Owner(owner));
+		return new OwnerModel(dbOwner);
+		
+		//return new OwnerModel(repository.save(new Owner(owner)));
 	}
 }

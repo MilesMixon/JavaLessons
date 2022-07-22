@@ -1,5 +1,6 @@
 package com.skillstorm.beans;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -15,6 +16,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.skillstorm.models.OwnerModel;
+import com.skillstorm.models.VehicleModel;
 
 //DTO is better than sending your same spring data classes to the frontend
 @Entity
@@ -41,6 +44,20 @@ public class Owner {
 	private Set<Vehicle> vehicles;
 	
 	public Owner() { }
+	
+	public Owner(OwnerModel owner) {
+		this.id = owner.getId();
+		this.name = owner.getName();
+		this.favorite_color = owner.getFavoriteColor();
+		this.favorite_food = owner.getFavoriteFood();
+		this.age = owner.getAge();
+		
+		Set<Vehicle> newVehicles = new HashSet<>();
+		for (VehicleModel vehicle : owner.getVehicles()) {
+			newVehicles.add(new Vehicle(vehicle));
+		}
+		this.vehicles = newVehicles;
+	}
 
 	public Owner(int id, String name, String favorite_color, String favorite_food, int age, Set<Vehicle> vehicles) {
 		super();

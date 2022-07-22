@@ -9,7 +9,8 @@ public class VehicleModel {
 	private String model;
 	private int year;
 	private String color;
-	private int ownerId;
+	private double price;
+	//private int ownerId;
 	
 	public VehicleModel() {
 		super();
@@ -21,17 +22,19 @@ public class VehicleModel {
 		this.model = vehicle.getModel();
 		this.year = vehicle.getYear();
 		this.color = vehicle.getColor();
-		this.ownerId = vehicle.getOwner().getId();
+		this.price = vehicle.getPrice();
+		//this.ownerId = vehicle.getOwner().getId();
 	}
 
-	public VehicleModel(int id, String make, String model, int year, String color, int ownerId) {
+	public VehicleModel(int id, String make, String model, int year, String color, double price) {
 		super();
 		this.id = id;
 		this.make = make;
 		this.model = model;
 		this.year = year;
 		this.color = color;
-		this.ownerId = ownerId;
+		this.price = price;
+		//this.ownerId = ownerId;
 	}
 
 	public int getId() {
@@ -74,17 +77,25 @@ public class VehicleModel {
 		this.color = color;
 	}
 
-	public int getOwnerId() {
-		return ownerId;
+//	public int getOwnerId() {
+//		return ownerId;
+//	}
+//
+//	public void setOwnerId(int ownerId) {
+//		this.ownerId = ownerId;
+//	}
+
+	public double getPrice() {
+		return price;
 	}
 
-	public void setOwnerId(int ownerId) {
-		this.ownerId = ownerId;
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 	@Override
 	public String toString() {
 		return "VehicleModel [id=" + id + ", make=" + make + ", model=" + model + ", year=" + year + ", color=" + color
-				+ ", ownerId=" + ownerId + "]";
+				+ "]";
 	}
 }

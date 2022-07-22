@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.skillstorm.models.VehicleModel;
 
 @Entity
 @Table(name = "vehicles")
@@ -43,6 +44,19 @@ public class Vehicle {
 	private Owner owner;
 	
 	public Vehicle() { }
+	
+	public Vehicle(VehicleModel vehicle) {
+		this.id = vehicle.getId();
+		this.make = vehicle.getMake();
+		this.model = vehicle.getModel();
+		this.year = vehicle.getYear();
+		this.color = vehicle.getColor();
+		this.price = vehicle.getPrice();
+		
+		//default values for now, maybe i just dont add them
+		this.mileage = 0;
+		this.electric = false;
+	}
 	
 	public Vehicle(int id, String make, String model, int year, String color, double price, int mileage,
 			boolean electric) {
