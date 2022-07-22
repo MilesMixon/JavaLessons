@@ -18,7 +18,22 @@ logging:
     '[com.skillstorm]': debug
     root: info
   
+#strongly recommended not to enable all of them
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 #We'll come back to this  
 skillstorm:
-  race:
-    champion: Marcie
+  classroom:
+    champion:
+      name: Marcie
+      times: 10
+    first-loser: Dan Pickles
+    mascot: Wombat
+    fav-trainer: Sean
+    
+
+    

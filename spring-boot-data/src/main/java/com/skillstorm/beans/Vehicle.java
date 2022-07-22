@@ -25,7 +25,8 @@ public class Vehicle {
 	private String make;
 	@Column
 	private String model;
-	@Column
+	//had to change sql setup and column name to account for h2 reserved keywords
+	@Column(name = "`year`")
 	private int year;
 	@Column
 	private String color;

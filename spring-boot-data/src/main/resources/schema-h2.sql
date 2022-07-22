@@ -10,7 +10,7 @@ create table `vehicles` (
 	`id` INT PRIMARY KEY AUTO_INCREMENT,
 	`make` VARCHAR(50),
 	`model` VARCHAR(50),
-	`year` VARCHAR(50),
+	"year" VARCHAR(50),
 	`color` VARCHAR(50),
 	`price` DECIMAL(9,2),
 	`mileage` INT,

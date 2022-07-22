@@ -26,7 +26,7 @@ public class SpringBootDataApplication implements CommandLineRunner {
 //	@Autowired
 //	DinosaurRepository repo;
 	
-	@Value("${skillstorm.race.champion}")
+	@Value("${skillstorm.classroom.champion.name}")
 	private String raceChampion;
 	
 	//can have spring boot inject in a logger

@@ -21,26 +21,26 @@ insert into owners (id, name, favoriteColor, favoriteFood, age) values (19, 'Emm
 insert into owners (id, name, favoriteColor, favoriteFood, age) values (20, 'Tabbie Top', 'Orange', 'Hold Up Tool Storage Rack', 53);
 
 -- vehicle data
-insert into vehicles (id, make, model, `year`, color, price, mileage, electric, ownerId) values (1, 'BMW', '6 Series', 2007, 'Teal', 989625.58, 121227, false, 5);
-insert into vehicles (id, make, model, `year`, color, price, mileage, electric, ownerId) values (2, 'Ford', 'Expedition', 1997, 'Goldenrod', 574867.56, 15838, false, 9);
-insert into vehicles (id, make, model, `year`, color, price, mileage, electric, ownerId) values (3, 'Honda', 'Passport', 1998, 'Blue', 56268.19, 56275, true, 17);
-insert into vehicles (id, make, model, `year`, color, price, mileage, electric, ownerId) values (4, 'Honda', 'Insight', 2001, 'Violet', 970605.64, 109196, true, 16);
-insert into vehicles (id, make, model, `year`, color, price, mileage, electric, ownerId) values (5, 'Ford', 'Escape', 2006, 'Puce', 254165.71, 10790, false, 11);
-insert into vehicles (id, make, model, `year`, color, price, mileage, electric, ownerId) values (6, 'BMW', '7 Series', 1992, 'Indigo', 181278.31, 150647, true, 8);
-insert into vehicles (id, make, model, `year`, color, price, mileage, electric, ownerId) values (7, 'Ford', 'Fusion', 2009, 'Aquamarine', 166118.15, 162412, false, 1);
-insert into vehicles (id, make, model, `year`, color, price, mileage, electric, ownerId) values (8, 'Mitsubishi', 'L300', 1990, 'Maroon', 849259.83, 109319, false, 6);
-insert into vehicles (id, make, model, `year`, color, price, mileage, electric, ownerId) values (9, 'Chevrolet', 'Lumina', 1993, 'Green', 341843.55, 53162, false, 14);
-insert into vehicles (id, make, model, `year`, color, price, mileage, electric, ownerId) values (10, 'Land Rover', 'Discovery', 2000, 'Turquoise', 435649.1, 166448, true, 3);
-insert into vehicles (id, make, model, `year`, color, price, mileage, electric, ownerId) values (11, 'Daewoo', 'Nubira', 2001, 'Indigo', 858799.39, 20905, false, 1);
-insert into vehicles (id, make, model, `year`, color, price, mileage, electric, ownerId) values (12, 'Mercury', 'Grand Marquis', 1989, 'Red', 662680.9, 97038, true, 5);
-insert into vehicles (id, make, model, `year`, color, price, mileage, electric, ownerId) values (13, 'Mitsubishi', 'Challenger', 2000, 'Teal', 920721.87, 60499, true, 18);
-insert into vehicles (id, make, model, `year`, color, price, mileage, electric, ownerId) values (14, 'Ford', 'Explorer', 2000, 'Blue', 109997.25, 198633, true, 3);
-insert into vehicles (id, make, model, `year`, color, price, mileage, electric, ownerId) values (15, 'Ford', 'Freestar', 2004, 'Aquamarine', 692111.21, 49954, false, 1);
-insert into vehicles (id, make, model, `year`, color, price, mileage, electric, ownerId) values (16, 'Mercury', 'Sable', 1994, 'Crimson', 421714.31, 69371, true, 13);
-insert into vehicles (id, make, model, `year`, color, price, mileage, electric, ownerId) values (17, 'Aston Martin', 'DB9', 2005, 'Yellow', 952583.52, 79598, true, 5);
-insert into vehicles (id, make, model, `year`, color, price, mileage, electric, ownerId) values (18, 'Pontiac', 'Trans Sport', 1999, 'Blue', 111201.97, 61008, true, 16);
-insert into vehicles (id, make, model, `year`, color, price, mileage, electric, ownerId) values (19, 'Ford', 'Focus', 2006, 'Blue', 404462.34, 68893, true, 18);
-insert into vehicles (id, make, model, `year`, color, price, mileage, electric, ownerId) values (20, 'Chevrolet', 'Express 1500', 1996, 'Indigo', 614189.54, 170234, true, 18);
+insert into vehicles (id, make, model, "year", color, price, mileage, electric, ownerId) values (1, 'BMW', '6 Series', 2007, 'Teal', 989625.58, 121227, false, 5);
+insert into vehicles (id, make, model, "year", color, price, mileage, electric, ownerId) values (2, 'Ford', 'Expedition', 1997, 'Goldenrod', 574867.56, 15838, false, 9);
+insert into vehicles (id, make, model, "year", color, price, mileage, electric, ownerId) values (3, 'Honda', 'Passport', 1998, 'Blue', 56268.19, 56275, true, 17);
+insert into vehicles (id, make, model, "year", color, price, mileage, electric, ownerId) values (4, 'Honda', 'Insight', 2001, 'Violet', 970605.64, 109196, true, 16);
+insert into vehicles (id, make, model, "year", color, price, mileage, electric, ownerId) values (5, 'Ford', 'Escape', 2006, 'Puce', 254165.71, 10790, false, 11);
+insert into vehicles (id, make, model, "year", color, price, mileage, electric, ownerId) values (6, 'BMW', '7 Series', 1992, 'Indigo', 181278.31, 150647, true, 8);
+insert into vehicles (id, make, model, "year", color, price, mileage, electric, ownerId) values (7, 'Ford', 'Fusion', 2009, 'Aquamarine', 166118.15, 162412, false, 1);
+insert into vehicles (id, make, model, "year", color, price, mileage, electric, ownerId) values (8, 'Mitsubishi', 'L300', 1990, 'Maroon', 849259.83, 109319, false, 6);
+insert into vehicles (id, make, model, "year", color, price, mileage, electric, ownerId) values (9, 'Chevrolet', 'Lumina', 1993, 'Green', 341843.55, 53162, false, 14);
+insert into vehicles (id, make, model, "year", color, price, mileage, electric, ownerId) values (10, 'Land Rover', 'Discovery', 2000, 'Turquoise', 435649.1, 166448, true, 3);
+insert into vehicles (id, make, model, "year", color, price, mileage, electric, ownerId) values (11, 'Daewoo', 'Nubira', 2001, 'Indigo', 858799.39, 20905, false, 1);
+insert into vehicles (id, make, model, "year", color, price, mileage, electric, ownerId) values (12, 'Mercury', 'Grand Marquis', 1989, 'Red', 662680.9, 97038, true, 5);
+insert into vehicles (id, make, model, "year", color, price, mileage, electric, ownerId) values (13, 'Mitsubishi', 'Challenger', 2000, 'Teal', 920721.87, 60499, true, 18);
+insert into vehicles (id, make, model, "year", color, price, mileage, electric, ownerId) values (14, 'Ford', 'Explorer', 2000, 'Blue', 109997.25, 198633, true, 3);
+insert into vehicles (id, make, model, "year", color, price, mileage, electric, ownerId) values (15, 'Ford', 'Freestar', 2004, 'Aquamarine', 692111.21, 49954, false, 1);
+insert into vehicles (id, make, model, "year", color, price, mileage, electric, ownerId) values (16, 'Mercury', 'Sable', 1994, 'Crimson', 421714.31, 69371, true, 13);
+insert into vehicles (id, make, model, "year", color, price, mileage, electric, ownerId) values (17, 'Aston Martin', 'DB9', 2005, 'Yellow', 952583.52, 79598, true, 5);
+insert into vehicles (id, make, model, "year", color, price, mileage, electric, ownerId) values (18, 'Pontiac', 'Trans Sport', 1999, 'Blue', 111201.97, 61008, true, 16);
+insert into vehicles (id, make, model, "year", color, price, mileage, electric, ownerId) values (19, 'Ford', 'Focus', 2006, 'Blue', 404462.34, 68893, true, 18);
+insert into vehicles (id, make, model, "year", color, price, mileage, electric, ownerId) values (20, 'Chevrolet', 'Express 1500', 1996, 'Indigo', 614189.54, 170234, true, 18);
 
 -- dinosaur data
 insert into dinosaurs (id, name, color) values (1, 'Suricata suricatta', 'Maroon');

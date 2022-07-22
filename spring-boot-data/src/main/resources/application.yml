@@ -18,7 +18,20 @@ logging:
     '[com.skillstorm]': info
     root: info
   
+#turn on the actuaor endpoints
+#strongly recommended not to enable all of them
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 #We'll come back to this  
 skillstorm:
-  race:
-    champion: Miles
+  classroom:
+    champion:
+      name: Miles
+      times: 9001
+    fav-trainer: Miles
+    first-loser: Taylor
+    mascot: Husky
