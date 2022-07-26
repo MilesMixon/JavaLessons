@@ -1,0 +1,13 @@
+server:
+  port: 9010
+  
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+  application:
+    name: movie-api
+  sql:
+    init:
+      platform: h2
+

@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: recommendation-api
+    
+server:
+  port: 9011
