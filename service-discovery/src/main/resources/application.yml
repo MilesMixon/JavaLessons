@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: service-discovery
+    
+server:
+  port: 8761
+  #This is the conventional eureka port
+  #Everything we need is out of the box

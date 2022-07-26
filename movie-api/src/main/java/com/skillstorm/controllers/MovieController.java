@@ -15,25 +15,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.beans.Movie;
-import com.skillstorm.services.MovieService;
-
+import com.skillstorm.data.MovieRepository;
 
 @RestController
 @RequestMapping("/movies/v1")
 public class MovieController {
 
 	@Autowired
-	private MovieService movieService;
+	private MovieRepository movieRepository;
 	
 	@GetMapping
 	public ResponseEntity<Iterable<Movie>> getAllMovies() {
-		List<Movie> movies = movieService.findAll();
+		List<Movie> movies = movieRepository.findAll();
 		return new ResponseEntity<Iterable<Movie>>(movies, HttpStatus.OK);
 	}
 	
 	@GetMapping("/movie/{id}")
 	public ResponseEntity<Movie> getById(@PathVariable int id) {
-		Optional<Movie> movie = movieService.findById(id);
+		Optional<Movie> movie = movieRepository.findById(id);
 		
 		try {
 			return new ResponseEntity<Movie>(movie.get(), HttpStatus.OK);
@@ -44,6 +43,6 @@ public class MovieController {
 	
 	@PostMapping("/movie")
 	public ResponseEntity<Movie> saveMovie(@RequestBody Movie movie) {
-		return new ResponseEntity<Movie>(movieService.save(movie), HttpStatus.CREATED);
+		return new ResponseEntity<Movie>(movieRepository.save(movie), HttpStatus.CREATED);
 	}
 }

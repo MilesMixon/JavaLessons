@@ -5,11 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
-@EnableEurekaClient
-public class MovieApiApplication {
+@EnableEurekaClient //tells it it's a client of eureka and not the server
+public class ApiGatewayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MovieApiApplication.class, args);
+		SpringApplication.run(ApiGatewayApplication.class, args);
 	}
 
 }

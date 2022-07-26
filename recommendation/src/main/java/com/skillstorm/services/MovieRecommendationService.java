@@ -6,10 +6,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.jboss.logging.Logger;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.EurekaClient;
 import com.skillstorm.models.Movie;
 
 @Service
@@ -17,9 +21,18 @@ public class MovieRecommendationService {
 
 	private static final Logger log = Logger.getLogger(MovieRecommendationService.class);
 	
-	private String movieApiBaseUrl = "http://localhost:9010"; //HARDCODED
+	@Autowired
+	private EurekaClient eurekaClient;
+	
+	private String movieApiBaseUrl; //non-hardcoded
+	//private String movieApiBaseUrl = "http://localhost:9010"; //HARDCODED
+	private String movieApiName = "MOVIE-API";
 	
 	public Movie findMovieById(int id) {
+		//ask eureka where the movies api is
+		InstanceInfo instanceInfo = eurekaClient.getApplication(movieApiName).getInstances().get(0);
+		this.movieApiBaseUrl = "http://" + instanceInfo.getHostName() + ":" + instanceInfo.getPort();
+		
 		RestTemplate restTemplate = new RestTemplate();
 		String url = this.movieApiBaseUrl + "/movies/v1/movie/" + id;
 		
@@ -44,6 +57,10 @@ public class MovieRecommendationService {
 	}
 	
 	public Iterable<Movie> recommendMovies() {	
+		//ask eureka where the movies api is
+		InstanceInfo instanceInfo = eurekaClient.getApplication(movieApiName).getInstances().get(0);
+		this.movieApiBaseUrl = "http://" + instanceInfo.getHostName() + ":" + instanceInfo.getPort();
+		
 		//make an http call to another service (basically RestSharp)
 		RestTemplate template = new RestTemplate();
 		ResponseEntity<Movie[]> httpResponse = template.getForEntity(this.movieApiBaseUrl + "/movies/v1", Movie[].class);

@@ -8,10 +8,10 @@ import javax.persistence.Id;
 
 @Entity
 public class Movie {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	@Column
 	private String title;
 	
@@ -32,9 +32,9 @@ public class Movie {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
+	
 	@Override
 	public String toString() {
-		return String.format("Movie [id=%s, title=%s]", id, title);
+		return String.format("Movie [id=%d, title=%s]", id, title);
 	}
 }
