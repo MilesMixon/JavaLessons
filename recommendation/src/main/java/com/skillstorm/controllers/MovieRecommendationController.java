@@ -19,6 +19,7 @@ public class MovieRecommendationController {
 	
 	@GetMapping("/movies")
 	public ResponseEntity<Iterable<Movie>> getRecommendedMovies() {
-		return new ResponseEntity<Iterable<Movie>>(movieService.recommendMovies(), HttpStatus.OK);
+		//return new ResponseEntity<Iterable<Movie>>(movieService.recommendMovies(), HttpStatus.OK);
+		return new ResponseEntity<Iterable<Movie>>(movieService.recommendMoviesWithFeign(), HttpStatus.OK);
 	}
 }

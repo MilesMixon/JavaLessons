@@ -15,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 import com.skillstorm.models.Movie;
+import com.skillstorm.restclients.MovieApiRestClient;
 
 @Service
 public class MovieRecommendationService {
@@ -28,6 +29,14 @@ public class MovieRecommendationService {
 	//private String movieApiBaseUrl = "http://localhost:9010"; //HARDCODED
 	private String movieApiName = "MOVIE-API";
 	
+	@Autowired
+	private MovieApiRestClient movieClient;
+	
+	public Movie findMovieByIdWithFeign(int id) {
+		return movieClient.findById(id);
+	}
+	
+	@Deprecated
 	public Movie findMovieById(int id) {
 		//ask eureka where the movies api is
 		InstanceInfo instanceInfo = eurekaClient.getApplication(movieApiName).getInstances().get(0);
@@ -56,6 +65,13 @@ public class MovieRecommendationService {
 		return fiveMovies;
 	}
 	
+	public Iterable<Movie> recommendMoviesWithFeign() {
+		//exact same as below with the feign client
+		return findFiveRecommendedMovies(movieClient.findAll());
+	}
+	
+	//It causes the compiler to warn developers when they call this method
+	@Deprecated
 	public Iterable<Movie> recommendMovies() {	
 		//ask eureka where the movies api is
 		InstanceInfo instanceInfo = eurekaClient.getApplication(movieApiName).getInstances().get(0);
