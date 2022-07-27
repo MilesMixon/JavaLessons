@@ -1,15 +1,17 @@
 spring:
   application:
-    name: rabbit-publisher
+    name: rabbit-subscriber
   rabbitmq:
     host: localhost
     port: 5672
 
 queues:
   oak: pallet-town
+  fanout: pokeCenter1
   
+#arbitrary
 exchanges:
   fanout: pokeMart
   
 server:
-  port: 8456
+  port: 8457
