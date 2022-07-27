@@ -14,12 +14,23 @@ spring:
         #uri: http://localhost:9010/
         predicates:
         - Path=/movies/**
-      
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: anyLogicalName
+            fallbackUri: forward:/fallbackUrl/null
+        
       - id:
         uri: lb://RECOMMENDATION-API
         #uri: http://localhost:9011/
         predicates:
         - Path=/recommended/**
+        #this is your circuit breaker. Filter name has to CircuitBreaker, the rest you decide
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: anyLogicalName
+            fallbackUri: forward:/fallbackUrl/null
         
 #Eureka is in one spot, it doesnt go down, and it's the only harcoded thing you'll have
 eureka:
